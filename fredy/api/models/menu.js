@@ -12,7 +12,8 @@ module.exports = {
     "deskripsi" : {type:'string'},
     "harga" : {type:'int'},
     "kategori" : {type:'string'},
-    "urlfoto" : {type:'string'}
+    "urlfoto" : {type:'string'},
+    "status" : {type: 'int'}
   }
   
 };

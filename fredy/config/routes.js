@@ -53,6 +53,21 @@ module.exports.routes = {
   'get /menuapi':{
     controller: 'menuapi',
     action :'index'
+  },
+
+  'post /addmenu':{
+    controller: 'menuapi',
+    action : 'tambah'
+  },
+
+  'get /carikategori/:kategori':{
+    controller: 'menuapi',
+    action: 'carikategori'
+  },
+
+  'get /deletemenuapi/:menu':{
+    controller: 'menuapi',
+    action: 'deletemenuapi'
   }
 
 };
