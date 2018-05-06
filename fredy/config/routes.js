@@ -51,9 +51,18 @@ module.exports.routes = {
   controller	: 'userapi',
   action		: 'index'
   },
-  'get /userdetail/:username':{},
-  'post /edituser/:username':{},
-  'post /tambahuser':{},
+  'get /userdetail/:username':{
+    controller : 'userapi',
+    action : 'getuserdetail'
+  },
+  'post /edituser/:username':{
+    controller : 'userapi',
+    action : 'updateuserapi'
+  },
+  'post /tambahuser':{
+    controller : 'userapi',
+    action : 'tambahuser'
+  },
   'post /bayargaji/:username':{},
   'get /rekapabsensi/:username':{},
 

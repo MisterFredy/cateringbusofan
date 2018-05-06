@@ -12,7 +12,7 @@ module.exports = {
 		});
 	 },
 
-	 insertpemesan: function(req,res){
+	 tambahuser: function(req,res){
 		 var _newuser = {
 			"user": req.param("username"),
 			"alamat": req.param("alamat"),
@@ -24,10 +24,16 @@ module.exports = {
 			"status":1  
 		 }
 
-		 return Contact.create(_newuser).then(function (_user) {
+		 return user.create(_newuser).then(function (_user) {
            res.json('sukses')
         }).catch(function (err) {
 			res.json('error input user')
+		});
+	 },
+
+	 getuserdetail: function(req,res){
+		user.find().where({user:req.param("username")}).then(function(_menu){
+		return res.json(_menu);
 		});
 	 },
 

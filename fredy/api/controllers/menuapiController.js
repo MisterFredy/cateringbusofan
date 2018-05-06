@@ -25,15 +25,9 @@ module.exports = {
       ]
 	}],
 	"status":1
-	/*		"nama": req.param("nama"),
-			"deskripsi": req.param("deskripsi"),
-			"harga": req.param("harga"),
-			"kategori": req.param("kategori"),
-			"urlfoto": req.param("urlfoto"),
-			"status": req.param("1")*/
 		 }
 
-		 return Contact.create(_newmenu).then(function (_menu) {
+		 return menu.create(_newmenu).then(function (_menu) {
            res.json('sukses')
         }).catch(function (err) {
 			res.json('error input menu')
@@ -51,9 +45,11 @@ module.exports = {
     cariaktifmenu: function(req,res){
         menu.find().where({
             menu:[{
-                status:1
+                status:"1"
             }]
-        })
+        }).then(function(_menu){
+            return res.json(_menu);
+        });
     },
 
 	/*updatemenuapi: function(req,res){
