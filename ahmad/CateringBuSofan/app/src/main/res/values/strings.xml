@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Catering Bu Sofan</string>
+    <string name="catering_desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit,sed do eiusmod tempor incididunt ut labore et dolore magnaaliqua.</string>
+    <string name="silahkan_isi">Silahkan isikan username dan password untuk login</string>
+    <string name="deskripsi">Cras pretium malesuada quam non tristique. Vivamus quis leo magna. Cras pretium malesuada quam non tristique. Vivamus quis leo magna. Cras pretium malesuada quam non tristique.</string>
+    <string name="title_activity_home">Dashboard</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_catalogue_more">CatalogueMoreActivity</string>
+</resources>
