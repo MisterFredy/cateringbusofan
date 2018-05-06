@@ -45,11 +45,21 @@ module.exports.routes = {
   * for configuration options and examples.                                  *
   *                                                                          *
   ***************************************************************************/
+
+  /*CRUD USER API*/
  'get /userapi': {
   controller	: 'userapi',
   action		: 'index'
   },
+  'get /userdetail/:username':{},
+  'post /edituser/:username':{},
+  'post /tambahuser':{},
+  'post /bayargaji/:username':{},
+  'get /rekapabsensi/:username':{},
 
+
+
+  /*menu API LIST */
   'get /menuapi':{
     controller: 'menuapi',
     action :'index'
@@ -65,9 +75,30 @@ module.exports.routes = {
     action: 'carikategori'
   },
 
-  'get /deletemenuapi/:menu':{
+  'get /cariaktifmenu':{
+    controller: 'menuapi',
+    action: 'cariaktifmenu'
+  },
+
+  /*'get /deletemenuapi/:menu':{
     controller: 'menuapi',
     action: 'deletemenuapi'
-  }
+  },
+
+  'get /item':{},
+
+  /*pemesanan */
+  'get /lihatpesanan':{},
+  'post /buatpesanan':{},
+  'get /generatecode':{},
+  'post /approvepesan':{},
+ 
+
+    /*presensi API route */
+    'get /presensitambah/:id':{},
+    'post /presensitambah/:username':{},
+    'get /rekappresensi/:username':{},
+
+    
 
 };

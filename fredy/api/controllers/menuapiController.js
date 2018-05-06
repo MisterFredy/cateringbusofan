@@ -7,19 +7,30 @@
 
 module.exports = {
 	index: function(req,res){
-		menu.find().where({status:1}).then(function (_menu) {
+		menu.find().then(function (_menu) {
 		return res.json(_menu);
 		});
 	 },
 
 	tambah: function(req,res){
 		var _newmenu = {
-			"nama": req.param("nama"),
+			"category" : req.param("kategori"),
+    "menu":[{
+      "nama_menu": req.param("nama"),
+      "harga_default": req.param("harga"),
+      "deskripsi": req.param("deskripsi"),
+      "url_img": req.param("urlfoto"),
+      "detail_menu": [
+        req.param("menu")
+      ]
+	}],
+	"status":1
+	/*		"nama": req.param("nama"),
 			"deskripsi": req.param("deskripsi"),
 			"harga": req.param("harga"),
 			"kategori": req.param("kategori"),
 			"urlfoto": req.param("urlfoto"),
-			"status": req.param("1")
+			"status": req.param("1")*/
 		 }
 
 		 return Contact.create(_newmenu).then(function (_menu) {
@@ -30,13 +41,23 @@ module.exports = {
 	},
 
 	carikategori: function(req,res){
-		menu.find().where({kategori: req.param("kategori")}).then(function(_menu){
+        var kategori = req.param("kategori");
+        var splitkategori = kategori.split("_").join(" ");
+		menu.find().where({category:splitkategori}).then(function(_menu){
 		return res.json(_menu);
 		});
 	},
 
-	updatemenuapi: function(req,res){
-		return menu.update({pid: req.param("pid")}, {
+    cariaktifmenu: function(req,res){
+        menu.find().where({
+            menu:[{
+                status:1
+            }]
+        })
+    },
+
+	/*updatemenuapi: function(req,res){
+		return menu.update({pid: req.param("nama")}, {
             nama: req.param("nama"),
             deskripsi: req.param("deskripsi"),
             harga: req.param("harga"),
@@ -54,9 +75,9 @@ module.exports = {
 				}
             })
 		});
-	 },
+	 },*/
 
-	 deletemenuapi: function(req,res){
+	 /*deletemenuapi: function(req,res){
 		return menu.update({nama: req.param("nama")}, {
             nama: req.param("nama"),
             deskripsi: req.param("deskripsi"),
@@ -76,7 +97,7 @@ module.exports = {
 				}
             })
 		});
-	 },
+	 },*/
 
 
 

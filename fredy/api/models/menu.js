@@ -8,12 +8,17 @@
 module.exports = {
 
   attributes: {
-    "nama" : {type:'string'},
-    "deskripsi" : {type:'string'},
-    "harga" : {type:'int'},
-    "kategori" : {type:'string'},
-    "urlfoto" : {type:'string'},
-    "status" : {type: 'int'}
+    "category" : {type:'string'},
+    "menu":[{
+      "nama_menu": {type:'string'},
+      "harga_default": {type:'number'},
+      "deskripsi": {type:'string'},
+      "url_img": {type:'string'},
+      "detail_menu": [
+        {type:'string'}
+      ],
+      "status": {type:'number'}
+    }]
   }
   
 };
