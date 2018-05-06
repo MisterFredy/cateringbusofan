@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
+    tools:context="com.akhmadfaizin.cateringbusofan.RegisterActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_daftar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:text="Daftar"
+                android:textColor="#fff"
+                android:textSize="36sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_daftar"
+                android:layout_marginTop="28dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <EditText
+                    android:layout_width="276dp"
+                    android:layout_height="55dp"
+                    android:background="@drawable/text_input"
+                    android:hint="Username"
+                    android:inputType="textPersonName"
+                    android:paddingBottom="7dp"
+                    android:paddingLeft="18dp" />
+
+                <EditText
+                    android:layout_width="276dp"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/text_input"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:paddingBottom="7dp"
+                    android:paddingLeft="18dp" />
+
+                <EditText
+                    android:layout_width="276dp"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/text_input"
+                    android:hint="Ulang Password"
+                    android:inputType="textPassword"
+                    android:paddingBottom="7dp"
+                    android:paddingLeft="18dp" />
+
+                <EditText
+                    android:layout_width="276dp"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/text_input"
+                    android:hint="Nama Lengkap"
+                    android:inputType="textPersonName"
+                    android:paddingBottom="7dp"
+                    android:paddingLeft="18dp" />
+
+                <EditText
+                    android:layout_width="276dp"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/text_input"
+                    android:hint="No Handphone"
+                    android:inputType="phone"
+                    android:paddingBottom="7dp"
+                    android:paddingLeft="18dp" />
+
+                <TextView
+                    android:layout_width="276dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Jenis Kelamin"
+                    android:textColor="#fff"
+                    android:textSize="16sp" />
+
+                <RadioGroup
+                    android:layout_width="276dp"
+                    android:layout_height="35dp"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="#fff"
+                        android:text="Laki-Laki"
+                        android:textColor="#fff"
+                        android:textSize="16sp" />
+
+                    <RadioButton
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="#fff"
+                        android:text="Perempuan"
+                        android:textColor="#fff"
+                        android:textSize="16sp" />
+                </RadioGroup>
+
+                <EditText
+                    android:layout_width="276dp"
+                    android:layout_height="110dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/textarea_input"
+                    android:gravity="top"
+                    android:hint="Alamat"
+                    android:inputType="text|textMultiLine"
+                    android:paddingLeft="18dp"
+                    android:paddingTop="10dp" />
+
+                <ImageButton
+                    android:layout_width="276dp"
+                    android:layout_height="45dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/btn_daftar" />
+
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+</LinearLayout>
