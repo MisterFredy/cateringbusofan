@@ -1,1 +1,1 @@
-{"options":{"autoIndexId":true},"indexes":[{"v":1,"key":{"_id":1},"name":"_id_","ns":"catering.supplier"}]}
+{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"catering.supplier"}],"uuid":"7c6d06123b0c4860968f9e5d28f1ac4e"}

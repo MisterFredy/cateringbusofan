@@ -1,1 +1,1 @@
-{"options":{"autoIndexId":true},"indexes":[{"v":1,"key":{"_id":1},"name":"_id_","ns":"catering.cashflow"}]}
+{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"catering.cashflow"}],"uuid":"95988e201b6741eba23cd1ad69b34a7f"}
