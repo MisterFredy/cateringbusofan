@@ -9,10 +9,10 @@ module.exports = {
 
   attributes: {
     "user": {type:'string'},
-    "alamat": {type:'varchar'},
-    "urlfoto": {type:'varchar'},
+    "alamat": {type:'string'},
+    "urlfoto": {type:'string'},
     "jenis_kelamin": {type:'string'},
-    "no_hp": {type:'int'},
+    "no_hp": {type:'string'},
     "password": {type:'char'},
     "role":{type:'string'},
     "status":{type:'int'},

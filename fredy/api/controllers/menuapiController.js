@@ -43,10 +43,8 @@ module.exports = {
 	},
 
     cariaktifmenu: function(req,res){
-        menu.find().where({
-            menu:[{
-                status:"1"
-            }]
+        menu.find(menu).where({
+            "menu.status":1
         }).then(function(_menu){
             return res.json(_menu);
         });

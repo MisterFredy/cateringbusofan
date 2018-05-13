@@ -14,20 +14,25 @@ module.exports = {
 
 	 tambahuser: function(req,res){
 		 var _newuser = {
-			"user": req.param("username"),
+			"user": req.param("user"),
 			"alamat": req.param("alamat"),
-			"urlfoto": req.param("null"),
-			"jenis_kelamin": req.param("jeniskelamin"),
+			"urlfoto": "null",
+			"jenis_kelamin": req.param("jenis_kelamin"),
 			"no_hp": req.param("no_hp"),
 			"password": req.param("password"),
 			"role":req.param("role"),
-			"status":1  
+			"status":1,
+			"qrcode" :"null" 
 		 }
 
+		 //return res.json(_newuser);
 		 return user.create(_newuser).then(function (_user) {
-           res.json('sukses')
+			return res.json('sukses');
         }).catch(function (err) {
-			res.json('error input user')
+			console.error("Error on ContactService.createContact");
+            console.error(err);
+			console.error(JSON.stringify(err));
+			return res.json('error input user');
 		});
 	 },
 
