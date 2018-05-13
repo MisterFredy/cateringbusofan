@@ -13,7 +13,7 @@ module.exports = {
     "urlfoto": {type:'string'},
     "jenis_kelamin": {type:'string'},
     "no_hp": {type:'string'},
-    "password": {type:'char'},
+    "password": {type:'string'},
     "role":{type:'string'},
     "status":{type:'int'},
     "qrcode":{type:'string'}        
