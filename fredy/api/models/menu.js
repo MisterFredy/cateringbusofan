@@ -8,6 +8,7 @@
 module.exports = {
 
   attributes: {
+    "id": {type:'objectid',primaryKey:true},
     "category" : {type:'string'},
     "menu":[{
       "nama_menu": {type:'string'},

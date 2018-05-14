@@ -8,6 +8,7 @@
 module.exports = {
 
   attributes: {
+    "id": {type:'objectid',primaryKey:true},
     "pemesan":{type:"string"},
     "pengaprove":{type:"string"},
     "tanggalPemesanan":{type:"date"},

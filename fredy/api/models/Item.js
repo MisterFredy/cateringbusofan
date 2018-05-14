@@ -8,12 +8,13 @@
 module.exports = {
 
   attributes: {
-    nama_item:{type:"string"},
-    pilihan :[{
-      nama: {type:"string"},
-      deskripsi: {type:"string"},
-      harga: {type:"number"},
-      url_img: {type:"string"}
+    "id": {type:'objectid',primaryKey:true},
+    "nama_item":{type:"string"},
+    "pilihan" :[{
+      "nama": {type:"string"},
+      "deskripsi": {type:"string"},
+      "harga": {type:"number"},
+      "url_img": {type:"string"}
     }]
   }
 };
