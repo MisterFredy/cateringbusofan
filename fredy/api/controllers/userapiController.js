@@ -37,13 +37,19 @@ module.exports = {
 	 },
 
 	 getuserdetail: function(req,res){
-		user.find().where({user:req.param("username")}).then(function(_menu){
-		return res.json(_menu);
+		user.find().where({user:req.param("username")}).then(function(_user){
+		return res.json(_user);
 		});
 	 },
 
+	/*getuserdetail: function(req,res){
+		user.find({id:req.param("id")}).then(function(_user){
+		return res.json(_user);
+		});
+	 },*/
+
 	 updateuserapi: function(req,res){
-		return user.update({pid: req.param("pid")}, {
+		return user.update({id: req.param("id")}, {
             user: req.param("username"),
             alamat: req.param("alamat"),
             urlfoto: req.param("urlfoto"),
@@ -55,10 +61,9 @@ module.exports = {
         }).catch(function (err) {
             console.error("Error on ContactService.updateUser");
             console.error(err);
-
-            return user.find().where({pid: req.param("pid")}).then(function (_user) {
+            return user.find().where({id: req.param("id")}).then(function (_user) {
                 if (_user && _user.length > 0) {
-                    return res.json('tidak menemukan pid');
+                    return res.json('tidak menemukan id');
 				}
             })
 		});
@@ -66,7 +71,7 @@ module.exports = {
 
 
 	 deleteuserapi: function(req,res){
-		return user.update({pid: req.param("pid")}, {
+		return user.update({id: req.param("id")}, {
             username: req.param("username"),
             alamat: req.param("alamat"),
             urlfoto: req.param("urlfoto"),
@@ -75,11 +80,10 @@ module.exports = {
 			role: req.param("role"),
 			status: 0
         }).then(function (_user) {
-           res.json('suksesupdate');
+           res.json('suksesdelete');
         }).catch(function (err) {
             console.error("Error on ContactService.updateUser");
             console.error(err);
-
             return user.find().where({pid: req.param("pid")}).then(function (_user) {
                 if (_user && _user.length > 0) {
                     return res.json('tidak menemukan pid');

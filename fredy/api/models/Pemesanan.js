@@ -14,20 +14,7 @@ module.exports = {
     "Approval":{type:"string"},
     "totalBayar":{type:"number"},
     "totalDP":{type:"number"},
-      "detaiPemesanan":[{
-        "kategori":{type:"string"},
-        "menu":{type:"string"},
-        "kutantiti":{type:"number"},
-            "detailMenu":[{
-              type:"string"
-            }],
-        "tanggalPengiriman":{type:"date"},
-        "atasNama":{type:"string"},
-        "kontak":{type:"number"},
-        "alamat":{type:"string"},
-        "catatan":{type:"string"},
-        "status":{type:"number"}
-      }],
+    "detaiPemesanan":{type:"json"}
   }
 };
 

@@ -8,6 +8,7 @@
 module.exports = {
 
   attributes: {
+    "id": {type:'objectid',primaryKey:true},
     "user": {type:'string'},
     "alamat": {type:'string'},
     "urlfoto": {type:'string'},
