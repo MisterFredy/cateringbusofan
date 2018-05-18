@@ -8,14 +8,7 @@
 module.exports = {
 
   attributes: {
-    "id": {type:'objectid',primaryKey:true},
-    "pemesan":{type:"string"},
-    "pengaprove":{type:"string"},
-    "tanggalPemesanan":{type:"date"},
-    "Approval":{type:"string"},
-    "totalBayar":{type:"number"},
-    "totalDP":{type:"number"},
-    "detaiPemesanan":{type:"json"}
+
   }
 };
 

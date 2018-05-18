@@ -50,8 +50,8 @@ module.exports = {
         });
     },
 
-	/*updatemenuapi: function(req,res){
-		return menu.update({pid: req.param("nama")}, {
+    updatemenuapi: function(req,res){
+		return menu.update({_id: req.param("id")}, {
             nama: req.param("nama"),
             deskripsi: req.param("deskripsi"),
             harga: req.param("harga"),
@@ -63,16 +63,16 @@ module.exports = {
         }).catch(function (err) {
             console.error("Error on ContactService.updatemenu");
             console.error(err);
-            return menu.find().where({pid: req.param("pid")}).then(function (_menu) {
+            return menu.find().where({_id: req.param("_id")}).then(function (_menu) {
                 if (_menu && _menu.length > 0) {
-                    return res.json('tidak menemukan pid');
+                    return res.json('tidak menemukan _id');
 				}
             })
 		});
-	 },*/
+	 },
 
-	 /*deletemenuapi: function(req,res){
-		return menu.update({nama: req.param("nama")}, {
+	 deletemenuapi: function(req,res){
+		return menu.update({_id: req.param("id")}, {
             nama: req.param("nama"),
             deskripsi: req.param("deskripsi"),
             harga: req.param("harga"),
@@ -85,13 +85,13 @@ module.exports = {
             console.error("Error on ContactService.updatemenu");
             console.error(err);
 
-            return menu.find().where({pid: req.param("pid")}).then(function (_menu) {
+            return menu.find().where({_id: req.param("_id")}).then(function (_menu) {
                 if (_menu && _menu.length > 0) {
-                    return res.json('tidak menemukan pid');
+                    return res.json('tidak menemukan _id');
 				}
             })
 		});
-	 },*/
+	 },
 
 
 
