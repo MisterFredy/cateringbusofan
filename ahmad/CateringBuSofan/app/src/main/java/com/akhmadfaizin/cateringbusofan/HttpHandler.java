@@ -4,6 +4,7 @@ import android.util.Log;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -23,7 +24,7 @@ public class HttpHandler {
     public HttpHandler() {
     }
 
-    public String makeServiceCall(String reqUrl) {
+    public String goGetApi(String reqUrl) {
         String response = null;
         try {
             URL url = new URL(reqUrl);
@@ -63,5 +64,75 @@ public class HttpHandler {
             }
         }
         return sb.toString();
+    }
+
+    public Boolean postInsertAPI(String reqUrl, String jsonString) {
+        Boolean response = false;
+        try {
+            URL url = new URL(reqUrl);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("Accept","application/json");
+            conn.setDoOutput(true);
+            conn.setDoInput(true);
+            conn.connect();
+
+            DataOutputStream os = new DataOutputStream(conn.getOutputStream());
+            os.writeBytes(jsonString);
+
+            os.flush();
+            os.close();
+
+            Log.i("STATUS", String.valueOf(conn.getResponseCode()));
+            Log.i("MSG" , conn.getResponseMessage());
+
+            conn.disconnect();
+            response = true;
+        } catch (MalformedURLException e) {
+            Log.e(TAG, "MalformedURLException: " + e.getMessage());
+        } catch (ProtocolException e) {
+            Log.e(TAG, "ProtocolException: " + e.getMessage());
+        } catch (IOException e) {
+            Log.e(TAG, "IOException: " + e.getMessage());
+        } catch (Exception e) {
+            Log.e(TAG, "Exception: " + e.getMessage());
+        }
+        return response;
+    }
+
+    public Boolean postUpdateAPI(String reqUrl, String jsonString) {
+        Boolean response = false;
+        try {
+            URL url = new URL(reqUrl);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("PUT");
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("Accept","application/json");
+            conn.setDoOutput(true);
+            conn.setDoInput(true);
+            conn.connect();
+
+            DataOutputStream os = new DataOutputStream(conn.getOutputStream());
+            os.writeBytes(jsonString);
+
+            os.flush();
+            os.close();
+
+            Log.i("STATUS", String.valueOf(conn.getResponseCode()));
+            Log.i("MSG" , conn.getResponseMessage());
+
+            conn.disconnect();
+            response = true;
+        } catch (MalformedURLException e) {
+            Log.e(TAG, "MalformedURLException: " + e.getMessage());
+        } catch (ProtocolException e) {
+            Log.e(TAG, "ProtocolException: " + e.getMessage());
+        } catch (IOException e) {
+            Log.e(TAG, "IOException: " + e.getMessage());
+        } catch (Exception e) {
+            Log.e(TAG, "Exception: " + e.getMessage());
+        }
+        return response;
     }
 }

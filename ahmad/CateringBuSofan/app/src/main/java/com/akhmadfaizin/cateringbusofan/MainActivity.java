@@ -24,11 +24,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openLogin(View view) {
-        // Intent i = new Intent(this, LoginActivity.class);
-        // startActivity(i);
-
-        Intent intentBuffetC = new Intent(getBaseContext(), PackageBuffetCActivity.class);
-        startActivity(intentBuffetC);
-
+        Intent i = new Intent(this, LoginActivity.class);
+        startActivity(i);
     }
 }

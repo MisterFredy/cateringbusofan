@@ -48,7 +48,35 @@
         <activity
             android:name=".PackageBuffetCActivity"
             android:parentActivityName=".CatalogueActivity" />
-        <activity android:name=".PackageDeliveryDetailActivity"></activity>
+        <activity android:name=".PackageDeliveryDetailActivity" />
+        <activity
+            android:name=".PackageBuffetBActivity"
+            android:parentActivityName=".CatalogueActivity" />
+        <activity
+            android:name=".PackageBuffetAActivity"
+            android:parentActivityName=".CatalogueActivity" />
+        <activity android:name=".PackagePondokanActivity" />
+        <activity
+            android:name=".PackageInputDetailPengirimanActivity"
+            android:noHistory="true" />
+        <activity android:name=".TesPassingIntentActivity" />
+        <activity
+            android:name=".PackageNasiCActivity"
+            android:parentActivityName=".CatalogueActivity" />
+        <activity
+            android:name=".PackageNasiAActivity"
+            android:parentActivityName=".CatalogueActivity" />
+        <activity
+            android:name=".PackageNasiBActivity"
+            android:parentActivityName=".CatalogueActivity" />
+        <activity
+            android:name=".PackageNasiDActivity"
+            android:parentActivityName=".CatalogueActivity" />
+        <activity
+            android:name=".KeranjangActivity"
+            android:parentActivityName=".HomeActivity" />
+        <activity android:name=".PostPemesananActivity" />
+        <activity android:name=".PutPemesananActivity"></activity>
     </application>
 
 </manifest>

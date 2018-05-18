@@ -34,9 +34,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.TreeMap;
 
-public class PackageBuffetCActivity extends AppCompatActivity {
+public class PackageBuffetAActivity extends AppCompatActivity {
 
-    private String TAG = PackageBuffetCActivity.class.getSimpleName();
+    private String TAG = PackageBuffetAActivity.class.getSimpleName();
     List<List<PackageChoice>> listChoices;  // Store List Of Packages Choices available
     private ProgressDialog pDialog;
 
@@ -48,10 +48,7 @@ public class PackageBuffetCActivity extends AppCompatActivity {
             listViewF,
             listViewG,
             listViewH,
-            listViewI,
-            listViewJ,
-            listViewK,
-            listViewL;
+            listViewI;
     private TextView titleA,
             titleB,
             titleC,
@@ -61,9 +58,6 @@ public class PackageBuffetCActivity extends AppCompatActivity {
             titleG,
             titleH,
             titleI,
-            titleJ,
-            titleK,
-            titleL,
             pricePorsi;
     private int defaultPrice;
     private TreeMap<Integer, PackageChoice> selectedBoxA,
@@ -74,10 +68,7 @@ public class PackageBuffetCActivity extends AppCompatActivity {
             selectedBoxF,
             selectedBoxG,
             selectedBoxH,
-            selectedBoxI,
-            selectedBoxJ,
-            selectedBoxK,
-            selectedBoxL;
+            selectedBoxI;
     private LinkedHashMap<String, TreeMap<Integer, PackageChoice>> collectionSelected = new LinkedHashMap<String, TreeMap<Integer, PackageChoice>>();
     private HashMap<Integer, Integer> finalPrice; // To keep update the new price per porsi
     private HashMap<String, Object> packageData;    // Get One Data just For That Package
@@ -85,7 +76,7 @@ public class PackageBuffetCActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_package_buffet_c);
+        setContentView(R.layout.activity_package_buffet_a);
 
         // Setting Color of Status Bar
         if (Build.VERSION.SDK_INT >= 21) {
@@ -115,7 +106,7 @@ public class PackageBuffetCActivity extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
             // Showing progress dialog
-            pDialog = new ProgressDialog(PackageBuffetCActivity.this);
+            pDialog = new ProgressDialog(PackageBuffetAActivity.this);
             pDialog.setMessage("Tunggu Sebentar...");
             pDialog.setCancelable(false);
             pDialog.show();
@@ -140,8 +131,8 @@ public class PackageBuffetCActivity extends AppCompatActivity {
                     JSONArray root = new JSONArray(jsonStr);
                     JSONObject jsonObject = root.getJSONObject(0);
                     JSONArray jsonArray = jsonObject.getJSONArray("menu");
-                    // The Index Number 2 is for Buffet C
-                    JSONObject jsonObjectPackage = jsonArray.getJSONObject(2);
+                    // The Index Number 0 is for Buffet A
+                    JSONObject jsonObjectPackage = jsonArray.getJSONObject(0);
 
                     String package_name = jsonObjectPackage.getString("nama_menu");
                     int harga_default = jsonObjectPackage.getInt("harga_default");
@@ -191,7 +182,7 @@ public class PackageBuffetCActivity extends AppCompatActivity {
             }
 
             // Fetching Image
-            Picasso.with(PackageBuffetCActivity.this)
+            Picasso.with(PackageBuffetAActivity.this)
                     .load(String.valueOf(packageData.get("url_img")))
                     .fetch();
 
@@ -200,14 +191,11 @@ public class PackageBuffetCActivity extends AppCompatActivity {
             String urlb = "https://api.mlab.com/api/1/databases/cateringbusofan/collections/item?q={%22namaItem%22:%22Aneka%20Soup%22}&apiKey=x12MbBjL_GcDU4cpE6VDnZ-Ghj3qvvMI";
             String urlc = "https://api.mlab.com/api/1/databases/cateringbusofan/collections/item?q={%22namaItem%22:%22Masakan%20Ayam%22}&apiKey=x12MbBjL_GcDU4cpE6VDnZ-Ghj3qvvMI";
             String urld = "https://api.mlab.com/api/1/databases/cateringbusofan/collections/item?q={%22namaItem%22:%22Masakan%20Daging%22}&apiKey=x12MbBjL_GcDU4cpE6VDnZ-Ghj3qvvMI";
-            String urle = "https://api.mlab.com/api/1/databases/cateringbusofan/collections/item?q={%22namaItem%22:%22Masakan%20Seafood%22}&apiKey=x12MbBjL_GcDU4cpE6VDnZ-Ghj3qvvMI";
-            String urlf = "https://api.mlab.com/api/1/databases/cateringbusofan/collections/item?q={%22namaItem%22:%22Masakan%20Sayuran%22}&apiKey=x12MbBjL_GcDU4cpE6VDnZ-Ghj3qvvMI";
-            String urlg = "https://api.mlab.com/api/1/databases/cateringbusofan/collections/item?q={%22namaItem%22:%22Masakan%20Pelengkap%20Aneka%20Sayur%22}&apiKey=x12MbBjL_GcDU4cpE6VDnZ-Ghj3qvvMI";
-            String urlh = "https://api.mlab.com/api/1/databases/cateringbusofan/collections/item?q={%22namaItem%22:%22Aneka%20Penyegar%22}&apiKey=x12MbBjL_GcDU4cpE6VDnZ-Ghj3qvvMI";
-            String urli = "https://api.mlab.com/api/1/databases/cateringbusofan/collections/item?q={%22namaItem%22:%22Kerupuk%22}&apiKey=x12MbBjL_GcDU4cpE6VDnZ-Ghj3qvvMI";
-            String urlj = "https://api.mlab.com/api/1/databases/cateringbusofan/collections/item?q={%22namaItem%22:%22Buah%20Iris%22}&apiKey=x12MbBjL_GcDU4cpE6VDnZ-Ghj3qvvMI";
-            String urlk = "https://api.mlab.com/api/1/databases/cateringbusofan/collections/item?q={%22namaItem%22:%22Air%20Mineral,%20Teh%20dan%20Es%20Serek%22}&apiKey=x12MbBjL_GcDU4cpE6VDnZ-Ghj3qvvMI";
-            String urll = "https://api.mlab.com/api/1/databases/cateringbusofan/collections/item?q={%22namaItem%22:%22Es%20Cream%20dan%20Pudding%22}&apiKey=x12MbBjL_GcDU4cpE6VDnZ-Ghj3qvvMI";
+            String urle = "https://api.mlab.com/api/1/databases/cateringbusofan/collections/item?q={%22namaItem%22:%22Masakan%20Sayuran%22}&apiKey=x12MbBjL_GcDU4cpE6VDnZ-Ghj3qvvMI";
+            String urlf = "https://api.mlab.com/api/1/databases/cateringbusofan/collections/item?q={%22namaItem%22:%22Kerupuk%22}&apiKey=x12MbBjL_GcDU4cpE6VDnZ-Ghj3qvvMI";
+            String urlg = "https://api.mlab.com/api/1/databases/cateringbusofan/collections/item?q={%22namaItem%22:%22Buah%20Iris%22}&apiKey=x12MbBjL_GcDU4cpE6VDnZ-Ghj3qvvMI";
+            String urlh = "https://api.mlab.com/api/1/databases/cateringbusofan/collections/item?q={%22namaItem%22:%22Air%20Mineral,%20Teh%20dan%20Es%20Serek%22}&apiKey=x12MbBjL_GcDU4cpE6VDnZ-Ghj3qvvMI";
+            String urli = "https://api.mlab.com/api/1/databases/cateringbusofan/collections/item?q={%22namaItem%22:%22Es%20Cream%20dan%20Pudding%22}&apiKey=x12MbBjL_GcDU4cpE6VDnZ-Ghj3qvvMI";
 
             // Making a request to url and getting response
             String jsonStr_a = sh.goGetApi(urla);
@@ -219,9 +207,6 @@ public class PackageBuffetCActivity extends AppCompatActivity {
             String jsonStr_g = sh.goGetApi(urlg);
             String jsonStr_h = sh.goGetApi(urlh);
             String jsonStr_i = sh.goGetApi(urli);
-            String jsonStr_j = sh.goGetApi(urlj);
-            String jsonStr_k = sh.goGetApi(urlk);
-            String jsonStr_l = sh.goGetApi(urll);
 
             // List to containe the json response
             List<String> jsonList = new ArrayList<>();
@@ -234,10 +219,6 @@ public class PackageBuffetCActivity extends AppCompatActivity {
             jsonList.add(jsonStr_g);
             jsonList.add(jsonStr_h);
             jsonList.add(jsonStr_i);
-            jsonList.add(jsonStr_j);
-            jsonList.add(jsonStr_k);
-            jsonList.add(jsonStr_l);
-
 
             Log.e(TAG, "Response from url: " + jsonStr_a);
             Log.e(TAG, "Response from url: " + jsonStr_b);
@@ -248,11 +229,8 @@ public class PackageBuffetCActivity extends AppCompatActivity {
             Log.e(TAG, "Response from url: " + jsonStr_g);
             Log.e(TAG, "Response from url: " + jsonStr_h);
             Log.e(TAG, "Response from url: " + jsonStr_i);
-            Log.e(TAG, "Response from url: " + jsonStr_j);
-            Log.e(TAG, "Response from url: " + jsonStr_k);
-            Log.e(TAG, "Response from url: " + jsonStr_l);
 
-            if (jsonStr_a != null && jsonStr_b != null && jsonStr_c != null && jsonStr_d != null && jsonStr_e != null  && jsonStr_f != null && jsonStr_g != null && jsonStr_h != null && jsonStr_i != null && jsonStr_j != null && jsonStr_k != null && jsonStr_l != null) {
+            if (jsonStr_a != null && jsonStr_b != null && jsonStr_c != null && jsonStr_d != null && jsonStr_e != null && jsonStr_f != null && jsonStr_g != null && jsonStr_h != null && jsonStr_i != null) {
                 try {
                     for(int i = 0; i < jsonList.size(); i++) {
 
@@ -325,7 +303,7 @@ public class PackageBuffetCActivity extends AppCompatActivity {
 
             // Setting The Package Image
             ImageView iv_package = findViewById(R.id.iv_package);
-            Picasso.with(PackageBuffetCActivity.this)
+            Picasso.with(PackageBuffetAActivity.this)
                     .load(String.valueOf(packageData.get("url_img")))
                     .into(iv_package);
 
@@ -357,9 +335,6 @@ public class PackageBuffetCActivity extends AppCompatActivity {
             listViewG = (ListView) findViewById(R.id.lv_package_g);
             listViewH = (ListView) findViewById(R.id.lv_package_h);
             listViewI = (ListView) findViewById(R.id.lv_package_i);
-            listViewJ = (ListView) findViewById(R.id.lv_package_j);
-            listViewK = (ListView) findViewById(R.id.lv_package_k);
-            listViewL = (ListView) findViewById(R.id.lv_package_l);
 
             // Getting The Package Choices
             List<String> menu = (List<String>) packageData.get("detail_menu");
@@ -373,9 +348,6 @@ public class PackageBuffetCActivity extends AppCompatActivity {
             titleG = findViewById(R.id.tv_user_title_g);
             titleH = findViewById(R.id.tv_user_title_h);
             titleI = findViewById(R.id.tv_user_title_i);
-            titleJ = findViewById(R.id.tv_user_title_j);
-            titleK = findViewById(R.id.tv_user_title_k);
-            titleL = findViewById(R.id.tv_user_title_l);
 
             titleA.setText(menu.get(0));
             titleA.setVisibility(View.VISIBLE); // Set to visible because It is invisible when doing AsyncTask
@@ -387,9 +359,6 @@ public class PackageBuffetCActivity extends AppCompatActivity {
             titleG.setText(menu.get(6));
             titleH.setText(menu.get(7));
             titleI.setText(menu.get(8));
-            titleJ.setText(menu.get(9));
-            titleK.setText(menu.get(10));
-            titleL.setText(menu.get(11));
 
             // Setting Additional Price To Keep Track The Choices That Made
             finalPrice = new HashMap<Integer, Integer>();
@@ -403,9 +372,6 @@ public class PackageBuffetCActivity extends AppCompatActivity {
             finalPrice.put(7, 0);
             finalPrice.put(8, 0);
             finalPrice.put(9, 0);
-            finalPrice.put(10, 0);
-            finalPrice.put(11, 0);
-            finalPrice.put(12, 0);
 
             // Initialize Selected Box
             selectedBoxA = new TreeMap<Integer, PackageChoice>();
@@ -417,35 +383,26 @@ public class PackageBuffetCActivity extends AppCompatActivity {
             selectedBoxG = new TreeMap<Integer, PackageChoice>();
             selectedBoxH = new TreeMap<Integer, PackageChoice>();
             selectedBoxI = new TreeMap<Integer, PackageChoice>();
-            selectedBoxJ = new TreeMap<Integer, PackageChoice>();
-            selectedBoxK = new TreeMap<Integer, PackageChoice>();
-            selectedBoxL = new TreeMap<Integer, PackageChoice>();
 
             // Setting Adapter For Each ListView
-            final PackageCheckboxAdapter adapterA = new PackageCheckboxAdapter(PackageBuffetCActivity.this, listChoices.get(0));
+            final PackageCheckboxAdapter adapterA = new PackageCheckboxAdapter(PackageBuffetAActivity.this, listChoices.get(0));
             listViewA.setAdapter(adapterA);
-            final PackageCheckboxAdapter adapterB = new PackageCheckboxAdapter(PackageBuffetCActivity.this, listChoices.get(1));
+            final PackageCheckboxAdapter adapterB = new PackageCheckboxAdapter(PackageBuffetAActivity.this, listChoices.get(1));
             listViewB.setAdapter(adapterB);
-            final PackageCheckboxAdapter adapterC = new PackageCheckboxAdapter(PackageBuffetCActivity.this, listChoices.get(2));
+            final PackageCheckboxAdapter adapterC = new PackageCheckboxAdapter(PackageBuffetAActivity.this, listChoices.get(2));
             listViewC.setAdapter(adapterC);
-            final PackageCheckboxAdapter adapterD = new PackageCheckboxAdapter(PackageBuffetCActivity.this, listChoices.get(3));
+            final PackageCheckboxAdapter adapterD = new PackageCheckboxAdapter(PackageBuffetAActivity.this, listChoices.get(3));
             listViewD.setAdapter(adapterD);
-            final PackageCheckboxAdapter adapterE = new PackageCheckboxAdapter(PackageBuffetCActivity.this, listChoices.get(4));
+            final PackageCheckboxAdapter adapterE = new PackageCheckboxAdapter(PackageBuffetAActivity.this, listChoices.get(4));
             listViewE.setAdapter(adapterE);
-            final PackageCheckboxAdapter adapterF = new PackageCheckboxAdapter(PackageBuffetCActivity.this, listChoices.get(5));
+            final PackageCheckboxAdapter adapterF = new PackageCheckboxAdapter(PackageBuffetAActivity.this, listChoices.get(5));
             listViewF.setAdapter(adapterF);
-            final PackageCheckboxAdapter adapterG = new PackageCheckboxAdapter(PackageBuffetCActivity.this, listChoices.get(6));
+            final PackageCheckboxAdapter adapterG = new PackageCheckboxAdapter(PackageBuffetAActivity.this, listChoices.get(6));
             listViewG.setAdapter(adapterG);
-            final PackageCheckboxAdapter adapterH = new PackageCheckboxAdapter(PackageBuffetCActivity.this, listChoices.get(7));
+            final PackageCheckboxAdapter adapterH = new PackageCheckboxAdapter(PackageBuffetAActivity.this, listChoices.get(7));
             listViewH.setAdapter(adapterH);
-            final PackageCheckboxAdapter adapterI = new PackageCheckboxAdapter(PackageBuffetCActivity.this, listChoices.get(8));
+            final PackageCheckboxAdapter adapterI = new PackageCheckboxAdapter(PackageBuffetAActivity.this, listChoices.get(8));
             listViewI.setAdapter(adapterI);
-            final PackageCheckboxAdapter adapterJ = new PackageCheckboxAdapter(PackageBuffetCActivity.this, listChoices.get(9));
-            listViewJ.setAdapter(adapterJ);
-            final PackageCheckboxAdapter adapterK = new PackageCheckboxAdapter(PackageBuffetCActivity.this, listChoices.get(10));
-            listViewK.setAdapter(adapterK);
-            final PackageCheckboxAdapter adapterL = new PackageCheckboxAdapter(PackageBuffetCActivity.this, listChoices.get(11));
-            listViewL.setAdapter(adapterL);
 
             ListUtils.setDynamicHeight(listViewA);
             ListUtils.setDynamicHeight(listViewB);
@@ -456,9 +413,6 @@ public class PackageBuffetCActivity extends AppCompatActivity {
             ListUtils.setDynamicHeight(listViewG);
             ListUtils.setDynamicHeight(listViewH);
             ListUtils.setDynamicHeight(listViewI);
-            ListUtils.setDynamicHeight(listViewJ);
-            ListUtils.setDynamicHeight(listViewK);
-            ListUtils.setDynamicHeight(listViewL);
 
             // HANDLING LISTVIEW NO 1
             listViewA.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -1055,204 +1009,6 @@ public class PackageBuffetCActivity extends AppCompatActivity {
                 }
             });
 
-            // HANDLING LISTVIEW NO 10
-            listViewJ.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-                @Override
-                public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    // Get Model From Item that Selected
-                    PackageChoice model = listChoices.get(9).get(i);    // YANG DIUBAH
-
-                    if (model.isSelected()) {
-                        model.setSelected(false);
-                        // Remove The Choice in the Hashmap
-                        selectedBoxJ.remove(i);                 // YANG DIUBAH
-                    }
-                    else {
-                        model.setSelected(true);
-                        // Put The Choice in the Hashmap
-                        selectedBoxJ.put(i, model);             // YANG DIUBAH
-                    }
-
-                    // Get The Sum Of SelectedBox Hashmap
-                    int sumP = 0;
-                    for (PackageChoice p : selectedBoxJ.values()) {     // YANG DIUBAH
-                        sumP += p.getHarga();
-                    }
-
-                    // Update The Additional HashMap
-                    finalPrice.put(10,  sumP);          // YANG DIUBAH
-
-                    // Get The Updated Sums
-                    int sum = 0;
-                    for (int s : finalPrice.values()) {
-                        sum += s;
-                    }
-
-                    String strSumPrice = String.format("%,d", sum);
-                    pricePorsi.setText("Rp " + strSumPrice);
-
-                    String messageAdd = "Total per Porsi Berubah Menjadi \n Rp " + strSumPrice;
-
-                    Snackbar snackbar = Snackbar.make(scrollView, messageAdd, Snackbar.LENGTH_SHORT);
-                    snackbar.show();
-
-                    listChoices.get(9).set(i, model);           // YANG DIUBAH
-
-                    //Now update adapter so we are going to make a update method in adapter
-                    //Now declare adapter final to access in inner method
-                    adapterJ.updateRecords(listChoices.get(9));         // YANG DIUBAH
-
-                    return true;
-                }
-            });
-
-            listViewJ.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    // Get Model From Item that Selected
-                    PackageChoice model = listChoices.get(9).get(i);
-                    Intent intent = new Intent(getApplicationContext(), DetailItemActivity.class);
-                    intent.putExtra("NAMA", model.getNama());
-                    intent.putExtra("HARGA", model.getHarga());
-                    intent.putExtra("DESKRIPSI", model.getDeskripsi());
-                    intent.putExtra("URLIMG", model.getUrlImg());
-
-                    startActivity(intent);
-                }
-            });
-
-            // HANDLING LISTVIEW NO 11
-            listViewK.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-                @Override
-                public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    // Get Model From Item that Selected
-                    PackageChoice model = listChoices.get(10).get(i);    // YANG DIUBAH
-
-                    if (model.isSelected()) {
-                        model.setSelected(false);
-                        // Remove The Choice in the Hashmap
-                        selectedBoxK.remove(i);                 // YANG DIUBAH
-                    }
-                    else {
-                        model.setSelected(true);
-                        // Put The Choice in the Hashmap
-                        selectedBoxK.put(i, model);             // YANG DIUBAH
-                    }
-
-                    // Get The Sum Of SelectedBox Hashmap
-                    int sumP = 0;
-                    for (PackageChoice p : selectedBoxK.values()) {     // YANG DIUBAH
-                        sumP += p.getHarga();
-                    }
-
-                    // Update The Additional HashMap
-                    finalPrice.put(11,  sumP);          // YANG DIUBAH
-
-                    // Get The Updated Sums
-                    int sum = 0;
-                    for (int s : finalPrice.values()) {
-                        sum += s;
-                    }
-
-                    String strSumPrice = String.format("%,d", sum);
-                    pricePorsi.setText("Rp " + strSumPrice);
-
-                    String messageAdd = "Total per Porsi Berubah Menjadi \n Rp " + strSumPrice;
-
-                    Snackbar snackbar = Snackbar.make(scrollView, messageAdd, Snackbar.LENGTH_SHORT);
-                    snackbar.show();
-
-                    listChoices.get(10).set(i, model);           // YANG DIUBAH
-
-                    //Now update adapter so we are going to make a update method in adapter
-                    //Now declare adapter final to access in inner method
-                    adapterK.updateRecords(listChoices.get(10));         // YANG DIUBAH
-
-                    return true;
-                }
-            });
-
-            listViewK.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    // Get Model From Item that Selected
-                    PackageChoice model = listChoices.get(10).get(i);
-                    Intent intent = new Intent(getApplicationContext(), DetailItemActivity.class);
-                    intent.putExtra("NAMA", model.getNama());
-                    intent.putExtra("HARGA", model.getHarga());
-                    intent.putExtra("DESKRIPSI", model.getDeskripsi());
-                    intent.putExtra("URLIMG", model.getUrlImg());
-
-                    startActivity(intent);
-                }
-            });
-
-            // HANDLING LISTVIEW NO 12
-            listViewL.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-                @Override
-                public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    // Get Model From Item that Selected
-                    PackageChoice model = listChoices.get(11).get(i);    // YANG DIUBAH
-
-                    if (model.isSelected()) {
-                        model.setSelected(false);
-                        // Remove The Choice in the Hashmap
-                        selectedBoxL.remove(i);                 // YANG DIUBAH
-                    }
-                    else {
-                        model.setSelected(true);
-                        // Put The Choice in the Hashmap
-                        selectedBoxL.put(i, model);             // YANG DIUBAH
-                    }
-
-                    // Get The Sum Of SelectedBox Hashmap
-                    int sumP = 0;
-                    for (PackageChoice p : selectedBoxL.values()) {     // YANG DIUBAH
-                        sumP += p.getHarga();
-                    }
-
-                    // Update The Additional HashMap
-                    finalPrice.put(12,  sumP);          // YANG DIUBAH
-
-                    // Get The Updated Sums
-                    int sum = 0;
-                    for (int s : finalPrice.values()) {
-                        sum += s;
-                    }
-
-                    String strSumPrice = String.format("%,d", sum);
-                    pricePorsi.setText("Rp " + strSumPrice);
-
-                    String messageAdd = "Total per Porsi Berubah Menjadi \n Rp " + strSumPrice;
-
-                    Snackbar snackbar = Snackbar.make(scrollView, messageAdd, Snackbar.LENGTH_SHORT);
-                    snackbar.show();
-
-                    listChoices.get(11).set(i, model);           // YANG DIUBAH
-
-                    //Now update adapter so we are going to make a update method in adapter
-                    //Now declare adapter final to access in inner method
-                    adapterL.updateRecords(listChoices.get(11));         // YANG DIUBAH
-
-                    return true;
-                }
-            });
-
-            listViewL.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    // Get Model From Item that Selected
-                    PackageChoice model = listChoices.get(11).get(i);
-                    Intent intent = new Intent(getApplicationContext(), DetailItemActivity.class);
-                    intent.putExtra("NAMA", model.getNama());
-                    intent.putExtra("HARGA", model.getHarga());
-                    intent.putExtra("DESKRIPSI", model.getDeskripsi());
-                    intent.putExtra("URLIMG", model.getUrlImg());
-
-                    startActivity(intent);
-                }
-            });
-
             Button btnProcess = findViewById(R.id.btn_process);
             btnProcess.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -1273,16 +1029,13 @@ public class PackageBuffetCActivity extends AppCompatActivity {
                         collectionSelected.put(titleG.getText().toString(), selectedBoxG);
                         collectionSelected.put(titleH.getText().toString(), selectedBoxH);
                         collectionSelected.put(titleI.getText().toString(), selectedBoxI);
-                        collectionSelected.put(titleJ.getText().toString(), selectedBoxJ);
-                        collectionSelected.put(titleK.getText().toString(), selectedBoxK);
-                        collectionSelected.put(titleL.getText().toString(), selectedBoxL);
 
                         int finalSum = 0;
                         for (int s : finalPrice.values()) {
                             finalSum += s;
                         }
 
-                        PackageBuffetCSelect.setCollectionSelected(collectionSelected);
+                        PackageBuffetASelect.setCollectionSelected(collectionSelected);
 
                         Intent i = new Intent(getApplicationContext(), PackageInputDetailPengirimanActivity.class);
                         i.putExtra("NamaKategori", "Buffet");

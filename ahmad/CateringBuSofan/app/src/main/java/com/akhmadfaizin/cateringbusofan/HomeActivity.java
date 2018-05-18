@@ -59,14 +59,14 @@ public class HomeActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_ubah_profile) {
+        if (id == R.id.nav_keranjang) {
+            Intent i = new Intent(this, KeranjangActivity.class);
+            startActivity(i);
+        } else if (id == R.id.nav_ubah_profile) {
             Intent i = new Intent(this, UbahProfileActivity.class);
             startActivity(i);
         } else if (id == R.id.nav_ganti_password) {
             Intent i = new Intent(this, GantiPasswordActivity.class);
-            startActivity(i);
-        } else if (id == R.id.nav_logout) {
-            Intent i = new Intent(this, LoginActivity.class);
             startActivity(i);
         }
 
@@ -76,7 +76,9 @@ public class HomeActivity extends AppCompatActivity
     }
 
     public void goAbout(View view) {
-        Toast.makeText(this, "Activity Belum dibuat", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Activity Belum dibuat", Toast.LENGTH_SHORT).show();
+        Intent i = new Intent(this, KeranjangActivity.class);
+        startActivity(i);
     }
 
     public void goGaleri(View view) {

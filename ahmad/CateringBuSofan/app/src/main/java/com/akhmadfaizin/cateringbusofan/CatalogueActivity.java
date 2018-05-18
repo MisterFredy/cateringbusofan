@@ -18,7 +18,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class CatalogueActivity extends AppCompatActivity {
-    private static final Set<Integer> values = new HashSet<Integer>(Arrays.asList(1, 2, 3, 5, 6, 8, 9, 10, 12));
+    private static final Set<Integer> values = new HashSet<Integer>(Arrays.asList(1, 2, 3, 4, 6, 7, 9, 10, 11, 13));
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,12 +42,13 @@ public class CatalogueActivity extends AppCompatActivity {
 
         final ArrayList<Object> list = new ArrayList<>();
         list.add(new String("Nasi Box"));
-        list.add(new Catalogue("Paket A", R.drawable.sate));
-        list.add(new Catalogue("Paket B", R.drawable.sate));
-        list.add(new Catalogue("Paket C", R.drawable.sate));
+        list.add(new Catalogue("Nasi Box A", R.drawable.sate));
+        list.add(new Catalogue("Nasi Box B", R.drawable.sate));
+        list.add(new Catalogue("Nasi Box C", R.drawable.sate));
+        list.add(new Catalogue("Nasi Box D", R.drawable.sate));
         list.add(new String("Snack Box"));
-        list.add(new Catalogue("Paket A", R.drawable.sate));
-        list.add(new Catalogue("Paket B", R.drawable.sate));
+        list.add(new Catalogue("Snack Box A", R.drawable.sate));
+        list.add(new Catalogue("Snack Box B", R.drawable.sate));
         list.add(new String("Buffet"));
         list.add(new Catalogue("Buffet A", R.drawable.sate));
         list.add(new Catalogue("Buffet B", R.drawable.sate));
@@ -64,46 +65,47 @@ public class CatalogueActivity extends AppCompatActivity {
                                     int position, long id) {
                 if(values.contains(position)) {
                     switch(position) {
-                        // 1, 2, 3, 5, 6, 8, 9, 10, 12
-
+                        // 1, 2, 3, 4, 6, 7, 9, 10, 11, 13
 
                         case 1:
-                            // Do Something
-                            Toast.makeText(CatalogueActivity.this, "BELUM DIBUAT", Toast.LENGTH_SHORT).show();
+                            Intent intentNasiA = new Intent(getBaseContext(), PackageNasiAActivity.class);
+                            startActivity(intentNasiA);
                             break;
                         case 2:
-                            // Do Something
-                            Toast.makeText(CatalogueActivity.this, "BELUM DIBUAT", Toast.LENGTH_SHORT).show();
+                            Intent intentNasiB = new Intent(getBaseContext(), PackageNasiBActivity.class);
+                            startActivity(intentNasiB);
                             break;
                         case 3:
-                            // Do Something
-                            Toast.makeText(CatalogueActivity.this, "BELUM DIBUAT", Toast.LENGTH_SHORT).show();
+                            Intent intentNasiC = new Intent(getBaseContext(), PackageNasiCActivity.class);
+                            startActivity(intentNasiC);
                             break;
-                        case 5:
-                            // Do Something
+                        case 4:
+                            Intent intentNasiD = new Intent(getBaseContext(), PackageNasiDActivity.class);
+                            startActivity(intentNasiD);
+                            break;
+                        case 6:
                             Intent intentSnackA = new Intent(getBaseContext(), PackageSnackAActivity.class);
                             startActivity(intentSnackA);
                             break;
-                        case 6:
+                        case 7:
                             Intent intentSnackB = new Intent(getBaseContext(), PackageSnackBActivity.class);
                             startActivity(intentSnackB);
                             break;
-                        case 8:
-                            // Do Something
-                            Toast.makeText(CatalogueActivity.this, "BELUM DIBUAT", Toast.LENGTH_SHORT).show();
-                            break;
                         case 9:
-                            // Do Something
-                            Toast.makeText(CatalogueActivity.this, "BELUM DIBUAT", Toast.LENGTH_SHORT).show();
+                            Intent intentBuffetA = new Intent(getBaseContext(), PackageBuffetAActivity.class);
+                            startActivity(intentBuffetA);
                             break;
                         case 10:
-                            // Do Something
+                            Intent intentBuffetB = new Intent(getBaseContext(), PackageBuffetBActivity.class);
+                            startActivity(intentBuffetB);
+                            break;
+                        case 11:
                             Intent intentBuffetC = new Intent(getBaseContext(), PackageBuffetCActivity.class);
                             startActivity(intentBuffetC);
                             break;
-                        case 12:
-                            // Do Something
-                            Toast.makeText(CatalogueActivity.this, "BELUM DIBUAT", Toast.LENGTH_SHORT).show();
+                        case 13:
+                            Intent intentPondokan = new Intent(getBaseContext(), PackagePondokanActivity.class);
+                            startActivity(intentPondokan);
                             break;
                     }
 

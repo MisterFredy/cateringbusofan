@@ -1,10 +1,12 @@
 package com.akhmadfaizin.cateringbusofan;
 
+import java.io.Serializable;
+
 /**
  * Created by root on 5/2/18.
  */
 
-public class PackageChoice {
+public class PackageChoice implements Serializable {
     private boolean isSelected;
     private String nama;
     private String deskripsi;

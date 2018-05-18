@@ -30,7 +30,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.TreeMap;
 
 public class PackageSnackBActivity extends AppCompatActivity {
 
@@ -49,23 +51,19 @@ public class PackageSnackBActivity extends AppCompatActivity {
             titleD,
             titleE,
             pricePorsi;
+    private TreeMap<Integer, PackageChoice> selectedBoxA,
+            selectedBoxB,
+            selectedBoxC,
+            selectedBoxD,
+            selectedBoxE;
     private int preSelectedIndexA = -1,
             preSelectedIndexB = -1,
             preSelectedIndexC = -1,
             preSelectedIndexD = -1,
             preSelectedIndexE = -1,
-            defaultPrice,
-            priceA = 0,
-            priceB = 0,
-            priceC = 0,
-            priceD = 0,
-            priceE = 0;
-    private String choiceA,
-            choiceB,
-            choiceC,
-            choiceD,
-            choiceE;
-    private HashMap<Integer, Integer> additionalPrice; // To keep update the new price per porsi
+            defaultPrice;
+    private LinkedHashMap<String, TreeMap<Integer, PackageChoice>> collectionSelected = new LinkedHashMap<String, TreeMap<Integer, PackageChoice>>();
+    private HashMap<Integer, Integer> finalPrice; // To keep update the new price per porsi
     private HashMap<String, Object> packageData;    // Get One Data just For That Package
 
     @Override
@@ -116,7 +114,7 @@ public class PackageSnackBActivity extends AppCompatActivity {
             String url = "https://api.mlab.com/api/1/databases/cateringbusofan/collections/menu?q={%22category%22:%22Snack%20Box%22}&apiKey=x12MbBjL_GcDU4cpE6VDnZ-Ghj3qvvMI";
 
             // Making a request to url and getting response
-            String jsonStr = sh.makeServiceCall(url);
+            String jsonStr = sh.goGetApi(url);
 
             Log.e(TAG, "Response from url: " + jsonStr);
 
@@ -182,11 +180,11 @@ public class PackageSnackBActivity extends AppCompatActivity {
             String urle = "https://api.mlab.com/api/1/databases/cateringbusofan/collections/item?q={%22namaItem%22:%22Air%20Mineral%22}&apiKey=x12MbBjL_GcDU4cpE6VDnZ-Ghj3qvvMI";
 
             // Making a request to url and getting response
-            String jsonStr_a = sh.makeServiceCall(urla);
-            String jsonStr_b = sh.makeServiceCall(urlb);
-            String jsonStr_c = sh.makeServiceCall(urlc);
-            String jsonStr_d = sh.makeServiceCall(urld);
-            String jsonStr_e = sh.makeServiceCall(urle);
+            String jsonStr_a = sh.goGetApi(urla);
+            String jsonStr_b = sh.goGetApi(urlb);
+            String jsonStr_c = sh.goGetApi(urlc);
+            String jsonStr_d = sh.goGetApi(urld);
+            String jsonStr_e = sh.goGetApi(urle);
 
             // List to containe the json response
             List<String> jsonList = new ArrayList<>();
@@ -321,13 +319,20 @@ public class PackageSnackBActivity extends AppCompatActivity {
             titleE.setText(menu.get(4));
 
             // Setting Additional Price To Keep Track The Choices That Made
-            additionalPrice = new HashMap<Integer, Integer>();
-            additionalPrice.put(0, defaultPrice);
-            additionalPrice.put(1, 0);
-            additionalPrice.put(2, 0);
-            additionalPrice.put(3, 0);
-            additionalPrice.put(4, 0);
-            additionalPrice.put(5, 0);
+            finalPrice = new HashMap<Integer, Integer>();
+            finalPrice.put(0, defaultPrice);
+            finalPrice.put(1, 0);
+            finalPrice.put(2, 0);
+            finalPrice.put(3, 0);
+            finalPrice.put(4, 0);
+            finalPrice.put(5, 0);
+
+            // Initialize Selected Box
+            selectedBoxA = new TreeMap<Integer, PackageChoice>();
+            selectedBoxB = new TreeMap<Integer, PackageChoice>();
+            selectedBoxC = new TreeMap<Integer, PackageChoice>();
+            selectedBoxD = new TreeMap<Integer, PackageChoice>();
+            selectedBoxE = new TreeMap<Integer, PackageChoice>();
 
             // Setting Adapter For Each ListView
             final PackageRadioAdapter adapterA = new PackageRadioAdapter(PackageSnackBActivity.this, listChoices.get(0));
@@ -354,16 +359,21 @@ public class PackageSnackBActivity extends AppCompatActivity {
                     // Get Model From Item that Selected
                     PackageChoice model = listChoices.get(0).get(i);
 
-                    // Get The Name
-                    choiceA = listChoices.get(0).get(i).getNama();
-                    priceA = listChoices.get(0).get(i).getHarga();
+                    selectedBoxA.clear();
+                    selectedBoxA.put(i, model);
+
+                    // Get The Sum Of SelectedBox Hashmap
+                    int sumP = 0;
+                    for (PackageChoice p : selectedBoxA.values()) {
+                        sumP += p.getHarga();
+                    }
 
                     // Update The Additional HashMap
-                    additionalPrice.put(1,  priceA);
+                    finalPrice.put(1,  sumP);
 
                     // Get The Updated Sums
                     int sum = 0;
-                    for (int s : additionalPrice.values()) {
+                    for (int s : finalPrice.values()) {
                         sum += s;
                     }
 
@@ -386,7 +396,6 @@ public class PackageSnackBActivity extends AppCompatActivity {
                         preRecord.setSelected(false);
 
                         listChoices.get(0).set(preSelectedIndexA, preRecord);
-
                     }
 
                     preSelectedIndexA = i;
@@ -422,16 +431,21 @@ public class PackageSnackBActivity extends AppCompatActivity {
                     // Get Model From Item that Selected
                     PackageChoice model = listChoices.get(1).get(i);
 
-                    // Get The Name
-                    choiceB = listChoices.get(1).get(i).getNama();
-                    priceB = listChoices.get(1).get(i).getHarga();
+                    selectedBoxB.clear();
+                    selectedBoxB.put(i, model);
+
+                    // Get The Sum Of SelectedBox Hashmap
+                    int sumP = 0;
+                    for (PackageChoice p : selectedBoxB.values()) {
+                        sumP += p.getHarga();
+                    }
 
                     // Update The Additional HashMap
-                    additionalPrice.put(2,  priceB);
+                    finalPrice.put(2,  sumP);
 
                     // Get The Updated Sums
                     int sum = 0;
-                    for (int s : additionalPrice.values()) {
+                    for (int s : finalPrice.values()) {
                         sum += s;
                     }
 
@@ -454,7 +468,6 @@ public class PackageSnackBActivity extends AppCompatActivity {
                         preRecord.setSelected(false);
 
                         listChoices.get(1).set(preSelectedIndexB, preRecord);
-
                     }
 
                     preSelectedIndexB = i;
@@ -489,16 +502,21 @@ public class PackageSnackBActivity extends AppCompatActivity {
                     // Get Model From Item that Selected
                     PackageChoice model = listChoices.get(2).get(i);
 
-                    // Get The Name
-                    choiceC = listChoices.get(2).get(i).getNama();
-                    priceC = listChoices.get(2).get(i).getHarga();
+                    selectedBoxC.clear();
+                    selectedBoxC.put(i, model);
+
+                    // Get The Sum Of SelectedBox Hashmap
+                    int sumP = 0;
+                    for (PackageChoice p : selectedBoxC.values()) {
+                        sumP += p.getHarga();
+                    }
 
                     // Update The Additional HashMap
-                    additionalPrice.put(3,  priceC);
+                    finalPrice.put(3,  sumP);
 
                     // Get The Updated Sums
                     int sum = 0;
-                    for (int s : additionalPrice.values()) {
+                    for (int s : finalPrice.values()) {
                         sum += s;
                     }
 
@@ -521,7 +539,6 @@ public class PackageSnackBActivity extends AppCompatActivity {
                         preRecord.setSelected(false);
 
                         listChoices.get(2).set(preSelectedIndexC, preRecord);
-
                     }
 
                     preSelectedIndexC = i;
@@ -556,16 +573,21 @@ public class PackageSnackBActivity extends AppCompatActivity {
                     // Get Model From Item that Selected
                     PackageChoice model = listChoices.get(3).get(i);
 
-                    // Get The Name
-                    choiceD = listChoices.get(3).get(i).getNama();
-                    priceD = listChoices.get(3).get(i).getHarga();
+                    selectedBoxD.clear();
+                    selectedBoxD.put(i, model);
+
+                    // Get The Sum Of SelectedBox Hashmap
+                    int sumP = 0;
+                    for (PackageChoice p : selectedBoxD.values()) {
+                        sumP += p.getHarga();
+                    }
 
                     // Update The Additional HashMap
-                    additionalPrice.put(4,  priceD);
+                    finalPrice.put(4,  sumP);
 
                     // Get The Updated Sums
                     int sum = 0;
-                    for (int s : additionalPrice.values()) {
+                    for (int s : finalPrice.values()) {
                         sum += s;
                     }
 
@@ -588,7 +610,6 @@ public class PackageSnackBActivity extends AppCompatActivity {
                         preRecord.setSelected(false);
 
                         listChoices.get(3).set(preSelectedIndexD, preRecord);
-
                     }
 
                     preSelectedIndexD = i;
@@ -623,16 +644,21 @@ public class PackageSnackBActivity extends AppCompatActivity {
                     // Get Model From Item that Selected
                     PackageChoice model = listChoices.get(4).get(i);
 
-                    // Get The Name
-                    choiceE = listChoices.get(4).get(i).getNama();
-                    priceE = listChoices.get(4).get(i).getHarga();
+                    selectedBoxE.clear();
+                    selectedBoxE.put(i, model);
+
+                    // Get The Sum Of SelectedBox Hashmap
+                    int sumP = 0;
+                    for (PackageChoice p : selectedBoxE.values()) {
+                        sumP += p.getHarga();
+                    }
 
                     // Update The Additional HashMap
-                    additionalPrice.put(5,  priceE);
+                    finalPrice.put(5,  sumP);
 
                     // Get The Updated Sums
                     int sum = 0;
-                    for (int s : additionalPrice.values()) {
+                    for (int s : finalPrice.values()) {
                         sum += s;
                     }
 
@@ -693,15 +719,25 @@ public class PackageSnackBActivity extends AppCompatActivity {
 
                     // Handle The Result
                     if(isAllRadioButtonSelected) {
-                        String message = titleA.getText().toString() + " - " + choiceA + " - " + priceA;
-                        message = message + "\n" + titleB.getText().toString() + " - " + choiceB + " - " + priceB;
-                        message = message + "\n" + titleC.getText().toString() + " - " + choiceC + " - " + priceC;
-                        message = message + "\n" + titleD.getText().toString() + " - " + choiceD + " - " + priceD;
-                        message = message + "\n" + titleE.getText().toString() + " - " + choiceE + " - " + priceE;
+                        collectionSelected.put(titleA.getText().toString(), selectedBoxA);
+                        collectionSelected.put(titleB.getText().toString(), selectedBoxB);
+                        collectionSelected.put(titleC.getText().toString(), selectedBoxC);
+                        collectionSelected.put(titleD.getText().toString(), selectedBoxD);
+                        collectionSelected.put(titleE.getText().toString(), selectedBoxE);
 
-                        int finalPrice = defaultPrice + priceA +  priceB + priceC + priceD + priceE;
-                        message = message + "\n" + "Total Price Per Item : " + String.valueOf(finalPrice);
-                        Toast.makeText(PackageSnackBActivity.this, message, Toast.LENGTH_SHORT).show();
+                        int finalSum = 0;
+                        for (int s : finalPrice.values()) {
+                            finalSum += s;
+                        }
+
+                        PackageSnackBSelect.setCollectionSelected(collectionSelected);
+
+                        Intent i = new Intent(getApplicationContext(), PackageInputDetailPengirimanActivity.class);
+                        i.putExtra("NamaKategori", "Snack Box");
+                        i.putExtra("NamaPackage", String.valueOf(packageData.get("package_name")));
+                        i.putExtra("DefaultPrice", (Integer) packageData.get("harga_default"));
+                        i.putExtra("FinalPrice", finalSum);
+                        startActivity(i);
                     }
                     else {
                         String message = "Semua Menu Harus Dipilih";
