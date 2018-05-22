@@ -68,7 +68,7 @@ module.exports.routes = {
 
 
 
-  /*menu API LIST */
+  /*menu API LIST 
   'get /menuapi':{
     controller: 'menuapi',
     action :'index'
@@ -88,7 +88,7 @@ module.exports.routes = {
     controller: 'menuapi',
     action: 'cariaktifmenu'
   },
-
+*/
   /*'get /deletemenuapi/:menu':{
     controller: 'menuapi',
     action: 'deletemenuapi'
@@ -96,12 +96,18 @@ module.exports.routes = {
 
   'get /item':{},
 
-  /*pemesanan */
-  'get /lihatpesanan':{},
-  'post /buatpesanan':{},
+  /*pemesanan 
+  'get /lihatpesanan':{
+    controller:'pemesanan',
+    action:'index'
+  },
+  'post /buatpesanan':{
+    controller:'pemesanan',
+    action:'buatpesanan'
+  },
   'get /generatecode':{},
   'post /approvepesan':{},
- 
+ */
 
     /*presensi API route */
     'get /presensitambah/:id':{},
