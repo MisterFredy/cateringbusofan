@@ -92,6 +92,30 @@ module.exports = {
 		});
 	 },
 
+	 uploadfiles: function(req,res){
+		 var uploadfiles = req.file("file");
+
+		 uploadfiles.upload({
+			dirname: '../../assets/images/profile', //directory folder upload
+			maxBytes: 3 * 1024 * 1024, //3 MB
+			allowedTypes: ['image/jpeg', 'image/png']
+		 }
+		 , function onUploadComplete(err, files) {
+			if (err) {
+				   return res.json({
+					 status: false,
+					 msg: 'uploading error'
+				   }); // False for err
+				 } else {
+				   return res.json({
+					 status: true,
+					 msg: 'success',
+					 data: files
+				   }); // True for success
+				 }
+			   });
+	 }
+
 
 };
 

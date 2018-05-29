@@ -66,6 +66,11 @@ module.exports.routes = {
   'post /bayargaji/:username':{},
   'get /rekapabsensi/:username':{},
 
+  'post /uploadfileuser':{
+    controller : 'userapi',
+    action: 'uploadfiles'
+  },
+  
 
 
   /*menu API LIST 
