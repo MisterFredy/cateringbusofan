@@ -93,10 +93,9 @@ module.exports = {
 	 },
 
 	 uploadfiles: function(req,res){
-		 var uploadfiles = req.file("file");
-
+		 var uploadfiles = req.file("avatar");
 		 uploadfiles.upload({
-			dirname: '../../assets/images/profile', //directory folder upload
+			dirname: '../../public/profile', //directory folder upload
 			maxBytes: 3 * 1024 * 1024, //3 MB
 			allowedTypes: ['image/jpeg', 'image/png']
 		 }
@@ -107,11 +106,20 @@ module.exports = {
 					 msg: 'uploading error'
 				   }); // False for err
 				 } else {
-				   return res.json({
-					 status: true,
-					 msg: 'success',
-					 data: files
-				   }); // True for success
+					 var filename = files[0].fd.split('/').reverse()[0];
+					return user.update({id: req.param("id")}, {
+						urlfoto: filename
+					}).then(function (_user) {
+					   res.json('suksesupdate');
+					}).catch(function (err) {
+						console.error("Error on ContactService.updateUser");
+						console.error(err);
+						return user.find().where({id: req.param("id")}).then(function (_user) {
+							if (_user && _user.length > 0) {
+								return res.json('tidak menemukan id');
+							}
+						})
+					});  // True for success
 				 }
 			   });
 	 }
