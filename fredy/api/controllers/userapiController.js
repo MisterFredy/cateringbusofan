@@ -107,16 +107,16 @@ module.exports = {
 				   }); // False for err
 				 } else {
 					 var filename = files[0].fd.split('/').reverse()[0];
-					return user.update({id: req.param("id")}, {
+					return user.update({user: req.param("username")}, {
 						urlfoto: filename
 					}).then(function (_user) {
 					   res.json('suksesupdate');
 					}).catch(function (err) {
 						console.error("Error on ContactService.updateUser");
 						console.error(err);
-						return user.find().where({id: req.param("id")}).then(function (_user) {
+						return user.find().where({user: req.param("username")}).then(function (_user) {
 							if (_user && _user.length > 0) {
-								return res.json('tidak menemukan id');
+								return res.json('tidak menemukan username');
 							}
 						})
 					});  // True for success
