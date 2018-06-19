@@ -71,7 +71,10 @@ module.exports.routes = {
     action: 'uploadfiles'
   },
   
-
+  'post /uploadbukti/:idpemesanan/:nominal':{
+    controller:'Buktibayarpesanan',
+    action: 'uploadbukti'
+  },
 
   /*menu API LIST 
   'get /menuapi':{

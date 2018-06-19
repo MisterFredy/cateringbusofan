@@ -21,7 +21,7 @@ module.exports = {
 			"no_hp": req.param("no_hp"),
 			"password": req.param("password"),
 			"role":req.param("role"),
-			"status":1,
+			"status":"1",
 			"qrcode" :"null" 
 		 }
 
