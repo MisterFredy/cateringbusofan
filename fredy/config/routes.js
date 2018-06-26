@@ -70,11 +70,65 @@ module.exports.routes = {
     controller : 'userapi',
     action: 'uploadfiles'
   },
-  
-  'post /uploadbukti/:idpemesanan/:nominal':{
-    controller:'Buktibayarpesanan',
+
+  'post /uploadbukti/:idpemesanan/:nominal/:tanggal':{
+    controller : 'Buktibayarpesanan',
     action: 'uploadbukti'
   },
+
+  'post /deletebukti/:id':{
+    controller : 'Buktibayarpesanan',
+    action: 'deletebukti'
+  },
+
+  'post /bukticocok/:id':{
+    controller : 'Buktibayarpesanan',
+    action: 'bukticocok'
+  },
+
+  'post /buktitidakcocok/:id':{
+    controller : 'Buktibayarpesanan',
+    action: 'buktitidakcocok'
+  },
+
+
+  /* ROUTE TAMBAHAN DARI AKHMAD */
+  'post /updatepassword/:username/:password':{
+    controller : 'userapi',
+    action : 'updatepassword'
+  },
+
+  'post /deletepemesanan/:id':{
+    controller : 'Pemesanan',
+    action : 'deletepemesanan'
+  },
+
+  'post /approvalbelum/:id/:pengaprove':{
+    controller : 'Pemesanan',
+    action : 'approvalbelum'
+  },
+
+  'post /approvalsudah/:id/:pengaprove':{
+    controller : 'Pemesanan',
+    action : 'approvalsudah'
+  },
+
+  'post /approvallunas/:id/:pengaprove':{
+    controller : 'Pemesanan',
+    action : 'approvallunas'
+  },
+
+
+
+
+  'post /updatedp/:id/:dp':{
+    controller : 'Pemesanan',
+    action : 'updatedp'
+  },
+
+ /* END OF ROUTE TAMBAHAN DARI AKHMAD */
+
+
 
   /*menu API LIST 
   'get /menuapi':{

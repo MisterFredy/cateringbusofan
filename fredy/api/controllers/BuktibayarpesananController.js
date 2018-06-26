@@ -6,6 +6,59 @@
  */
 
 module.exports = {
+  /* TAMBAHAN DARI AKHMAD */
+	 /* Delete Bukti */
+	 deletebukti: function(req,res){
+		return buktibayarpesanan.update({id: req.param("id")}, {
+            status: "0"
+        }).then(function (_buktibayarpesanan) {
+           res.json('suksesupdate');
+        }).catch(function (err) {
+            console.error("Error on ContactService.updateUser");
+            console.error(err);
+            return buktibayarpesanan.find().where({id: req.param("id")}).then(function (_buktibayarpesanan) {
+                if (_buktibayarpesanan && _buktibayarpesanan.length > 0) {
+                    return res.json('tidak menemukan id');
+				        }
+            })
+		    });
+    },
+
+
+
+     /* Update Konfirmasi Bukti */
+	 bukticocok: function(req,res){
+		return buktibayarpesanan.update({id: req.param("id")}, {
+            konfirmasi: "Gambar Cocok Dengan Nominal"
+        }).then(function (_buktibayarpesanan) {
+           res.json('suksesupdate');
+        }).catch(function (err) {
+            console.error("Error on ContactService.updateUser");
+            console.error(err);
+            return buktibayarpesanan.find().where({id: req.param("id")}).then(function (_buktibayarpesanan) {
+                if (_buktibayarpesanan && _buktibayarpesanan.length > 0) {
+                    return res.json('tidak menemukan id');
+				        }
+            })
+		    });
+    },
+
+    buktitidakcocok: function(req,res){
+		return buktibayarpesanan.update({id: req.param("id")}, {
+            konfirmasi: "Gambar Tidak Cocok Dengan Nominal"
+        }).then(function (_buktibayarpesanan) {
+           res.json('suksesupdate');
+        }).catch(function (err) {
+            console.error("Error on ContactService.updateUser");
+            console.error(err);
+            return buktibayarpesanan.find().where({id: req.param("id")}).then(function (_buktibayarpesanan) {
+                if (_buktibayarpesanan && _buktibayarpesanan.length > 0) {
+                    return res.json('tidak menemukan id');
+				        }
+            })
+		    });
+    },
+
 	uploadbukti: function(req,res){
         var uploadfiles = req.file("bukti");
         uploadfiles.upload({
@@ -21,10 +74,13 @@ module.exports = {
                   }); // False for err
                 } else {
                     var filename = files[0].fd.split('/').reverse()[0];
-                    return buktibayarpesanan.create({
+                   return buktibayarpesanan.create({
                        id_pemesanan:req.param("idpemesanan"),
                        url_img:filename,
-                       nominal:req.param("nominal")
+                       nominal:parseInt(req.param("nominal")),
+                       tanggal:req.param("tanggal"),
+                       konfirmasi:"Belum Dicek",
+                       status:"1"
                     }).then(function (_buktibayarpesanan) {
                       res.json('suksesupdate');
                    }).catch(function (err) {

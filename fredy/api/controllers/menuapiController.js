@@ -24,7 +24,7 @@ module.exports = {
         req.param("menu")
       ]
 	}],
-	"status":"1"
+	"status":1
 		 }
 
 		 return menu.create(_newmenu).then(function (_menu) {
@@ -44,7 +44,7 @@ module.exports = {
 
     cariaktifmenu: function(req,res){
         menu.find(menu).where({
-            "menu.status":"1"
+            "menu.status":1
         }).then(function(_menu){
             return res.json(_menu);
         });
@@ -78,7 +78,7 @@ module.exports = {
             harga: req.param("harga"),
             kategori: req.param("kategori"),
             urlfoto: req.param("urlfoto"),
-			status: "0"
+			status: 0
         }).then(function (_menu) {
            res.json('suksesupdate');
         }).catch(function (err) {

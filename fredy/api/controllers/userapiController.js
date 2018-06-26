@@ -15,13 +15,14 @@ module.exports = {
 	 tambahuser: function(req,res){
 		 var _newuser = {
 			"user": req.param("user"),
+			"nama" : req.param("nama"),
 			"alamat": req.param("alamat"),
 			"urlfoto": "null",
 			"jenis_kelamin": req.param("jenis_kelamin"),
 			"no_hp": req.param("no_hp"),
 			"password": req.param("password"),
 			"role":req.param("role"),
-			"status":"1",
+			"status":1,
 			"qrcode" :"null" 
 		 }
 
@@ -50,7 +51,8 @@ module.exports = {
 
 	 updateuserapi: function(req,res){
 		return user.update({id: req.param("id")}, {
-            user: req.param("username"),
+			user: req.param("username"),
+			nama: req.param("nama"),
             alamat: req.param("alamat"),
             urlfoto: req.param("urlfoto"),
             jenis_kelamin: req.param("jenis_kelamin"),
@@ -91,6 +93,26 @@ module.exports = {
             })
 		});
 	 },
+
+	 /* TAMBAHAN DARI AKHMAD */
+	 /* Update Password */
+	 updatepassword: function(req,res){
+		return user.update({user: req.param("username")}, {
+            password: req.param("password")
+        }).then(function (_user) {
+           res.json('suksesupdate');
+        }).catch(function (err) {
+            console.error("Error on ContactService.updateUser");
+            console.error(err);
+            return user.find().where({user: req.param("username")}).then(function (_user) {
+				if (_user && _user.length > 0) {
+					return res.json('tidak menemukan username');
+				}
+			})
+		});
+	 },
+
+	 
 
 	 uploadfiles: function(req,res){
 		 var uploadfiles = req.file("avatar");
