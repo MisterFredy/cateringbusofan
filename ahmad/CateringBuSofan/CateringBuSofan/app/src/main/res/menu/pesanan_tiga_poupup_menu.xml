@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/detail"
+        android:title="Detail Pemesanan"/>
+    <item
+        android:id="@+id/bukti"
+        android:title="Bukti Pembayaran"/>
+    <item
+        android:id="@+id/batal"
+        android:title="Batal"/>
+</menu>

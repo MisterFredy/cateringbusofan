@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Catering Bu Sofan</string>
+    <string name="catering_desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit,sed do eiusmod tempor incididunt ut labore et dolore magnaaliqua.</string>
+    <string name="silahkan_isi">Silahkan isikan username dan password untuk login</string>
+    <string name="deskripsi">Cras pretium malesuada quam non tristique. Vivamus quis leo magna. Cras pretium malesuada quam non tristique. Vivamus quis leo magna. Cras pretium malesuada quam non tristique.</string>
+    <string name="title_activity_home">Dashboard</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_catalogue_more">CatalogueMoreActivity</string>
+
+    <!--<string name="base_url">http://192.168.43.104/</string>-->
+    <string name="base_url">http://192.168.43.39/</string>
+
+    <string name="long_ipsum">
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dignissim dignissim rutrum. Suspendisse id sapien orci. Etiam sed rutrum nisl. Proin consectetur id dolor eu porttitor. Nunc odio erat, commodo sit amet lorem eget, volutpat mollis mauris. Suspendisse viverra rhoncus nulla nec ullamcorper. Ut elementum quam augue, porta tincidunt lacus accumsan consectetur. Nullam lacus velit, convallis luctus augue sed, pharetra pellentesque nisi. Suspendisse potenti. Aliquam et blandit lacus. Quisque felis velit, tincidunt porttitor aliquam sed, rhoncus in mi. Ut rutrum interdum laoreet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Quisque dignissim convallis massa, vitae ullamcorper turpis suscipit ac.
+
+Integer et massa consequat, blandit ex in, posuere augue. In vel congue sem. Donec massa leo, lacinia at accumsan nec, aliquet vel risus. Praesent pulvinar, ipsum quis tempus cursus, ligula massa finibus libero, at viverra lacus leo eleifend leo. Nullam et nulla rutrum, mollis velit porta, luctus lacus. Pellentesque ac ultrices quam, et varius tellus. Integer ullamcorper sagittis metus vel consequat. Praesent vel interdum augue.
+
+Cras pulvinar mi nec magna tincidunt, quis aliquet sapien ornare. Aenean gravida, ipsum a tempor malesuada, justo ligula dictum ipsum, eget condimentum tellus metus eget dui. Nam condimentum enim sit amet facilisis sagittis. Phasellus id pretium ex, sed viverra justo. Suspendisse libero leo, porttitor eget ornare a, condimentum vel lectus. Donec aliquam cursus vulputate. Nullam sed magna eu erat condimentum tempus. Etiam id accumsan ipsum, vitae auctor nulla. Donec sagittis mattis felis ac rutrum. Fusce tincidunt faucibus semper. Integer sodales elementum orci, nec ultrices ex ultricies vitae. Sed a risus iaculis, lobortis mi eu, gravida ex.
+
+Suspendisse et mi at metus elementum tristique. Cras euismod ex efficitur urna sollicitudin pellentesque sed et lorem. Vestibulum pellentesque mollis semper. Pellentesque cursus at dolor a elementum. Nullam convallis risus ipsum, congue luctus leo congue eget. Mauris in pharetra nulla. Vivamus vel convallis dolor, sed dapibus lorem. Praesent facilisis neque at neque sodales, nec commodo urna scelerisque. Praesent eu faucibus libero. In quis magna vitae metus consequat venenatis sed vel purus. Quisque posuere facilisis ante, ac faucibus dolor varius eget. Curabitur in orci auctor, porttitor quam ac, venenatis turpis. Cras a enim id ligula aliquet sollicitudin. Pellentesque id eros odio. Sed a justo molestie, tristique sapien et, pharetra dui.
+
+Sed sed augue mattis tellus cursus pulvinar. Nunc quis lorem tristique, ullamcorper lorem id, suscipit velit. Donec sollicitudin sem arcu. Morbi mattis dui justo, ut dignissim sem imperdiet in. Donec euismod malesuada accumsan. Nulla egestas, ligula et maximus porttitor, sapien diam malesuada mauris, ac luctus urna augue dapibus enim. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec consequat scelerisque cursus. Phasellus hendrerit venenatis ultricies. Pellentesque non tempor ligula, non tristique orci. Ut risus metus, aliquet rhoncus tempus sit amet, condimentum vitae nibh. Sed rutrum dui nisi. </string>
+</resources>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
+    tools:context="com.akhmadfaizin.cateringbusofan.LoginActivity">
+
+    <TextView
+        android:id="@+id/catering_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="80dp"
+        android:text="Bu Sofan"
+        android:textColor="#fff"
+        android:textSize="36sp"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/silahkan_isi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/catering_name"
+        android:layout_marginTop="80dp"
+        android:textColor="#fff"
+        android:textSize="18sp"
+        android:paddingLeft="70dp"
+        android:paddingRight="70dp"
+        android:textAlignment="center"
+        android:text="@string/silahkan_isi"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:layout_below="@id/silahkan_isi"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+        <EditText
+            android:id="@+id/et_username"
+            android:layout_width="276dp"
+            android:layout_height="55dp"
+            android:background="@drawable/text_input"
+            android:hint="Username"
+            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890"
+            android:inputType="textFilter"
+            android:maxLength="20"
+            android:paddingBottom="7dp"
+            android:paddingLeft="18dp"
+            android:paddingRight="18dp" />
+        <EditText
+            android:id="@+id/et_password"
+            android:layout_width="276dp"
+            android:layout_height="55dp"
+            android:paddingLeft="18dp"
+            android:paddingBottom="7dp"
+            android:layout_marginTop="16dp"
+            android:inputType="textPassword"
+            android:hint="Password"
+            android:background="@drawable/text_input" />
+        <ImageButton
+            android:id="@+id/btn_login"
+            android:layout_width="276dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/btn_login"/>
+    </LinearLayout>
+
+
+
+
+
+
+</RelativeLayout>

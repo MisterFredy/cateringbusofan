@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:background="#792525"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/lv_catalogue_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Title"
+        android:textColor="#fff"
+        android:paddingLeft="10dp"
+        android:textSize="28sp"
+        android:textStyle="bold"/>
+</RelativeLayout>
