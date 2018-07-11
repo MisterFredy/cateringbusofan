@@ -85,12 +85,12 @@ module.exports.routes = {
     action: 'deletebukti'
   },
 
-  'post /bukticocok/:id':{
+  'post /bukticocok/:id/:perespon':{
     controller : 'Buktibayarpesanan',
     action: 'bukticocok'
   },
 
-  'post /buktitidakcocok/:id':{
+  'post /buktitidakcocok/:id/:perespon':{
     controller : 'Buktibayarpesanan',
     action: 'buktitidakcocok'
   },

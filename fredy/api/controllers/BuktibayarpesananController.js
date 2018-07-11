@@ -29,7 +29,8 @@ module.exports = {
      /* Update Konfirmasi Bukti */
 	 bukticocok: function(req,res){
 		return buktibayarpesanan.update({id: req.param("id")}, {
-            konfirmasi: "Gambar Cocok Dengan Nominal"
+            konfirmasi: "Gambar Cocok Dengan Nominal",
+            perespon: req.param("perespon")
         }).then(function (_buktibayarpesanan) {
            res.json('suksesupdate');
         }).catch(function (err) {
@@ -45,7 +46,8 @@ module.exports = {
 
     buktitidakcocok: function(req,res){
 		return buktibayarpesanan.update({id: req.param("id")}, {
-            konfirmasi: "Gambar Tidak Cocok Dengan Nominal"
+            konfirmasi: "Gambar Tidak Cocok Dengan Nominal",
+            perespon: req.param("perespon")
         }).then(function (_buktibayarpesanan) {
            res.json('suksesupdate');
         }).catch(function (err) {
@@ -79,6 +81,7 @@ module.exports = {
                        url_img:filename,
                        nominal:parseInt(req.param("nominal")),
                        tanggal:req.param("tanggal"),
+                       perespon:"",
                        konfirmasi:"Belum Dicek",
                        status:"1"
                     }).then(function (_buktibayarpesanan) {
