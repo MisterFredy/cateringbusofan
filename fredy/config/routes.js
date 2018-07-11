@@ -63,6 +63,10 @@ module.exports.routes = {
     controller : 'userapi',
     action : 'tambahuser'
   },
+  'post /updtoken/:username/:token':{
+    controller : 'userapi',
+    action : 'updtoken'
+  },
   'post /bayargaji/:username':{},
   'get /rekapabsensi/:username':{},
 
@@ -118,8 +122,10 @@ module.exports.routes = {
     action : 'approvallunas'
   },
 
-
-
+  'get /joinorder':{
+    controller : 'Pemesanan',
+    action : 'joinpemesanan'
+  },
 
   'post /updatedp/:id/:dp':{
     controller : 'Pemesanan',

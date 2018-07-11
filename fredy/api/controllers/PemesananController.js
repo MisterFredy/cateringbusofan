@@ -24,6 +24,27 @@ module.exports = {
 		});
      },
 
+
+	 joinpemesanan: function(req,res){
+        pemesanan.native(function(err, collection) {
+            if (err) return res.serverError(err);
+          
+            collection.aggregate({
+                $lookup:{
+                    from: "user",
+                    localField:"user",
+                    foreignField:"user",
+                    as: "user_docs"
+                }
+            }, {
+            }).toArray(function (err, results) {
+              if (err) return res.serverError(err);
+              return res.ok(results);
+            });
+          });
+    },
+
+
      /* TAMBAHAN DARI AKHMAD */
 	 /* Update DP Value */
      updatedp: function(req,res){

@@ -22,6 +22,7 @@ module.exports = {
 			"no_hp": req.param("no_hp"),
 			"password": req.param("password"),
 			"role":req.param("role"),
+			"token":"null",
 			"status":1,
 			"qrcode" :"null" 
 		 }
@@ -99,6 +100,22 @@ module.exports = {
 	 updatepassword: function(req,res){
 		return user.update({user: req.param("username")}, {
             password: req.param("password")
+        }).then(function (_user) {
+           res.json('suksesupdate');
+        }).catch(function (err) {
+            console.error("Error on ContactService.updateUser");
+            console.error(err);
+            return user.find().where({user: req.param("username")}).then(function (_user) {
+				if (_user && _user.length > 0) {
+					return res.json('tidak menemukan username');
+				}
+			})
+		});
+	 },
+	
+	 updtoken: function(req,res){
+		return user.update({user: req.param("username")}, {
+            token: req.param("token")
         }).then(function (_user) {
            res.json('suksesupdate');
         }).catch(function (err) {
