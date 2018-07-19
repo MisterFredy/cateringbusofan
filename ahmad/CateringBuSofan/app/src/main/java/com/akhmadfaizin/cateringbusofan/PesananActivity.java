@@ -66,6 +66,8 @@ public class PesananActivity extends AppCompatActivity {
             // Making a request to url and getting response
             SharedPreferences sp = getSharedPreferences("LoginInfo", MODE_PRIVATE);
             String parameter_pemesan = sp.getString("username", null);
+            String full_name_pemesan = sp.getString("fullname", null);
+            String urlfoto_pemesan = sp.getString("urlfoto", null);
             String url = getString(R.string.base_url) + "pemesanan?status=1&user=" + parameter_pemesan + "&sort=createdAt%20DESC";
 
             // Making a request to url and getting response
@@ -82,10 +84,10 @@ public class PesananActivity extends AppCompatActivity {
                         JSONObject p = root.getJSONObject(i);
 
                         String kodeTransaksi = p.getString("id");
-                        String nama = p.getString("pemesan");
+                        String nama = full_name_pemesan;
                         String tanggalPemesanan = p.getString("tanggalPemesanan");
                         String approval = p.getString("approval");
-                        String urlPhoto = p.getString("urlPhoto");
+                        String urlPhoto = urlfoto_pemesan;
                         int totalBayar = p.getInt("totalBayar");
                         int dp = p.getInt("dp");
 

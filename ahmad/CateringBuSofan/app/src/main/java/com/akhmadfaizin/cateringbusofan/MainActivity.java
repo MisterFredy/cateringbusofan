@@ -136,10 +136,6 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    public void goAbout(View view) {
-        Toast.makeText(this, "Activity Belum dibuat", Toast.LENGTH_SHORT).show();
-    }
-
     public void goGaleri(View view) {
         Intent i = new Intent(this, CatalogueActivity.class);
         startActivity(i);

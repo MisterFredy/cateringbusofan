@@ -4,16 +4,17 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -69,6 +70,7 @@ public class KeranjangAdapter extends BaseAdapter {
             holder.tvHargaPorsi = view.findViewById(R.id.tv_harga_porsi);
             holder.tvKuantitasPorsi = view.findViewById(R.id.tv_kuantitas_porsi);
             holder.tvSubTotal = view.findViewById(R.id.tv_sub_total);
+            holder.ivImage = view.findViewById(R.id.iv_paket_img);
             holder.rlPopUpMenu = view.findViewById(R.id.rl_popUpMenu);
 
             view.setTag(holder);
@@ -82,6 +84,10 @@ public class KeranjangAdapter extends BaseAdapter {
         holder.tvHargaPorsi.setText("Rp " + String.format("%,d", model.getPerPorsi()) + " / porsi");
         holder.tvKuantitasPorsi.setText(String.format("%,d", model.getKuantitasPorsi()) + " porsi");
         holder.tvSubTotal.setText("Rp " + String.format("%,d", model.getSubTotal()));
+        Picasso.with(activity)
+                .load(model.getUrlImg())
+                .resize(90, 90)
+                .into(holder.ivImage);
 
         holder.rlPopUpMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -235,6 +241,7 @@ public class KeranjangAdapter extends BaseAdapter {
         TextView tvHargaPorsi;
         TextView tvKuantitasPorsi;
         TextView tvSubTotal;
+        ImageView ivImage;
         RelativeLayout rlPopUpMenu;
     }
 }
