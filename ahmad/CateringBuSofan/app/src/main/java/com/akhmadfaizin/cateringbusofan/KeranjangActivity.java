@@ -73,7 +73,7 @@ public class KeranjangActivity extends AppCompatActivity {
                     builder.setMessage("Anda Yakin Ingin Submit Order ?");
 
                     // Set the alert dialog yes button click listener
-                    builder.setPositiveButton("Iya", new DialogInterface.OnClickListener() {
+                    builder.setPositiveButton("Submit Order", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             Intent i = new Intent(getApplicationContext(), PostPemesananActivity.class);
@@ -83,7 +83,7 @@ public class KeranjangActivity extends AppCompatActivity {
                     });
 
                     // Set the alert dialog no button click listener
-                    builder.setNegativeButton("Batal", new DialogInterface.OnClickListener() {
+                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
@@ -96,8 +96,6 @@ public class KeranjangActivity extends AppCompatActivity {
 
                 }
             });
-
-
         }
 
     }
@@ -106,7 +104,7 @@ public class KeranjangActivity extends AppCompatActivity {
     public void onBackPressed()
     {
         super.onBackPressed();
-        Intent i = new Intent(getApplicationContext(), HomeActivity.class);
+        Intent i = new Intent(getApplicationContext(), MainActivity.class);
         i.addFlags ( Intent.FLAG_ACTIVITY_CLEAR_TOP );
         startActivity(i);
     }
@@ -149,7 +147,7 @@ public class KeranjangActivity extends AppCompatActivity {
             int kuantitas = PackageNasiASelect.getKuantitas();
             int subTotal = PackageNasiASelect.getSubTotalPrice();
 
-            keranjangItem.add(new Keranjang(namaKategori, namaPackage, perPorsi, kuantitas, subTotal));
+            keranjangItem.add(new Keranjang(namaKategori, namaPackage, perPorsi, kuantitas, subTotal, R.drawable.paket_nasi_a));
         }
 
         if (PackageNasiBSelect.getNamaPackage() != null && !PackageNasiBSelect.getNamaPackage().isEmpty()) {
@@ -159,7 +157,7 @@ public class KeranjangActivity extends AppCompatActivity {
             int kuantitas = PackageNasiBSelect.getKuantitas();
             int subTotal = PackageNasiBSelect.getSubTotalPrice();
 
-            keranjangItem.add(new Keranjang(namaKategori, namaPackage, perPorsi, kuantitas, subTotal));
+            keranjangItem.add(new Keranjang(namaKategori, namaPackage, perPorsi, kuantitas, subTotal, R.drawable.paket_nasi_b));
         }
 
         if (PackageNasiCSelect.getNamaPackage() != null && !PackageNasiCSelect.getNamaPackage().isEmpty()) {
@@ -169,7 +167,7 @@ public class KeranjangActivity extends AppCompatActivity {
             int kuantitas = PackageNasiCSelect.getKuantitas();
             int subTotal = PackageNasiCSelect.getSubTotalPrice();
 
-            keranjangItem.add(new Keranjang(namaKategori, namaPackage, perPorsi, kuantitas, subTotal));
+            keranjangItem.add(new Keranjang(namaKategori, namaPackage, perPorsi, kuantitas, subTotal, R.drawable.paket_nasi_c));
         }
 
         if (PackageNasiDSelect.getNamaPackage() != null && !PackageNasiDSelect.getNamaPackage().isEmpty()) {
@@ -179,7 +177,7 @@ public class KeranjangActivity extends AppCompatActivity {
             int kuantitas = PackageNasiDSelect.getKuantitas();
             int subTotal = PackageNasiDSelect.getSubTotalPrice();
 
-            keranjangItem.add(new Keranjang(namaKategori, namaPackage, perPorsi, kuantitas, subTotal));
+            keranjangItem.add(new Keranjang(namaKategori, namaPackage, perPorsi, kuantitas, subTotal, R.drawable.paket_nasi_d));
         }
 
         if (PackageSnackASelect.getNamaPackage() != null && !PackageSnackASelect.getNamaPackage().isEmpty()) {
@@ -189,7 +187,7 @@ public class KeranjangActivity extends AppCompatActivity {
             int kuantitas = PackageSnackASelect.getKuantitas();
             int subTotal = PackageSnackASelect.getSubTotalPrice();
 
-            keranjangItem.add(new Keranjang(namaKategori, namaPackage, perPorsi, kuantitas, subTotal));
+            keranjangItem.add(new Keranjang(namaKategori, namaPackage, perPorsi, kuantitas, subTotal, R.drawable.paket_snack_a));
         }
 
         if (PackageSnackBSelect.getNamaPackage() != null && !PackageSnackBSelect.getNamaPackage().isEmpty()) {
@@ -199,7 +197,7 @@ public class KeranjangActivity extends AppCompatActivity {
             int kuantitas = PackageSnackBSelect.getKuantitas();
             int subTotal = PackageSnackBSelect.getSubTotalPrice();
 
-            keranjangItem.add(new Keranjang(namaKategori, namaPackage, perPorsi, kuantitas, subTotal));
+            keranjangItem.add(new Keranjang(namaKategori, namaPackage, perPorsi, kuantitas, subTotal, R.drawable.paket_snack_b));
         }
 
         if (PackageBuffetASelect.getNamaPackage() != null && !PackageBuffetASelect.getNamaPackage().isEmpty()) {
@@ -209,7 +207,7 @@ public class KeranjangActivity extends AppCompatActivity {
             int kuantitas = PackageBuffetASelect.getKuantitas();
             int subTotal = PackageBuffetASelect.getSubTotalPrice();
 
-            keranjangItem.add(new Keranjang(namaKategori, namaPackage, perPorsi, kuantitas, subTotal));
+            keranjangItem.add(new Keranjang(namaKategori, namaPackage, perPorsi, kuantitas, subTotal, R.drawable.paket_buffet_a));
         }
 
         if (PackageBuffetBSelect.getNamaPackage() != null && !PackageBuffetBSelect.getNamaPackage().isEmpty()) {
@@ -219,7 +217,7 @@ public class KeranjangActivity extends AppCompatActivity {
             int kuantitas = PackageBuffetBSelect.getKuantitas();
             int subTotal = PackageBuffetBSelect.getSubTotalPrice();
 
-            keranjangItem.add(new Keranjang(namaKategori, namaPackage, perPorsi, kuantitas, subTotal));
+            keranjangItem.add(new Keranjang(namaKategori, namaPackage, perPorsi, kuantitas, subTotal, R.drawable.paket_buffet_b));
         }
 
         if (PackageBuffetCSelect.getNamaPackage() != null && !PackageBuffetCSelect.getNamaPackage().isEmpty()) {
@@ -229,7 +227,7 @@ public class KeranjangActivity extends AppCompatActivity {
             int kuantitas = PackageBuffetCSelect.getKuantitas();
             int subTotal = PackageBuffetCSelect.getSubTotalPrice();
 
-            keranjangItem.add(new Keranjang(namaKategori, namaPackage, perPorsi, kuantitas, subTotal));
+            keranjangItem.add(new Keranjang(namaKategori, namaPackage, perPorsi, kuantitas, subTotal, R.drawable.paket_buffet_c));
         }
 
         if (PackagePondokanSelect.getNamaPackage() != null && !PackagePondokanSelect.getNamaPackage().isEmpty()) {
@@ -239,7 +237,7 @@ public class KeranjangActivity extends AppCompatActivity {
             int kuantitas = PackagePondokanSelect.getKuantitas();
             int subTotal = PackagePondokanSelect.getSubTotalPrice();
 
-            keranjangItem.add(new Keranjang(namaKategori, namaPackage, perPorsi, kuantitas, subTotal));
+            keranjangItem.add(new Keranjang(namaKategori, namaPackage, perPorsi, kuantitas, subTotal, R.drawable.paket_pondokan));
         }
 
         return keranjangItem;

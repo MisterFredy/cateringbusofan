@@ -32,6 +32,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.TreeMap;
 
 public class PackageSnackAActivity extends AppCompatActivity {
@@ -39,6 +40,7 @@ public class PackageSnackAActivity extends AppCompatActivity {
     private String TAG = PackageSnackAActivity.class.getSimpleName();
     List<List<PackageChoice>> listChoices;  // Store List Of Packages Choices available
     private ProgressDialog pDialog;
+    private String NECESSITY;
 
     private ListView listViewA,
             listViewB ,
@@ -66,6 +68,8 @@ public class PackageSnackAActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_package_snack_a);
+
+        NECESSITY = getIntent().getStringExtra("NECESSITY");
 
         // Setting Color of Status Bar
         if (Build.VERSION.SDK_INT >= 21) {
@@ -107,7 +111,7 @@ public class PackageSnackAActivity extends AppCompatActivity {
             HttpHandler sh = new HttpHandler();
 
             // URL to get contacts JSON Snack A
-            String url = "https://api.mlab.com/api/1/databases/cateringbusofan/collections/menu?q={%22category%22:%22Snack%20Box%22}&apiKey=x12MbBjL_GcDU4cpE6VDnZ-Ghj3qvvMI";
+            String url = getString(R.string.base_url) + "menu?category=Snack%20Box";
 
             // Making a request to url and getting response
             String jsonStr = sh.goGetApi(url);
@@ -169,10 +173,10 @@ public class PackageSnackAActivity extends AppCompatActivity {
             }
 
             // Getting The Choice Package JSON
-            String urla = "https://api.mlab.com/api/1/databases/cateringbusofan/collections/item?q={%22namaItem%22:%22Snack%20Manis%22}&apiKey=x12MbBjL_GcDU4cpE6VDnZ-Ghj3qvvMI";
-            String urlb = "https://api.mlab.com/api/1/databases/cateringbusofan/collections/item?q={%22namaItem%22:%22Snack%20Gurih%22}&apiKey=x12MbBjL_GcDU4cpE6VDnZ-Ghj3qvvMI";
-            String urlc = "https://api.mlab.com/api/1/databases/cateringbusofan/collections/item?q={%22namaItem%22:%22Kletikan%22}&apiKey=x12MbBjL_GcDU4cpE6VDnZ-Ghj3qvvMI";
-            String urld = "https://api.mlab.com/api/1/databases/cateringbusofan/collections/item?q={%22namaItem%22:%22Air%20Mineral%22}&apiKey=x12MbBjL_GcDU4cpE6VDnZ-Ghj3qvvMI";
+            String urla = getString(R.string.base_url) + "item?namaItem=Snack%20Manis";
+            String urlb = getString(R.string.base_url) + "item?namaItem=Snack%20Gurih";
+            String urlc = getString(R.string.base_url) + "item?namaItem=Kletikan";
+            String urld = getString(R.string.base_url) + "item?namaItem=Air%20Mineral";
 
             // Making a request to url and getting response
             String jsonStr_a = sh.goGetApi(urla);
@@ -265,8 +269,9 @@ public class PackageSnackAActivity extends AppCompatActivity {
 
             // Setting The Package Image
             ImageView iv_package = findViewById(R.id.iv_package);
+            String urlfoto = getString(R.string.base_url) + "makanan/" + String.valueOf(packageData.get("url_img"));
             Picasso.with(PackageSnackAActivity.this)
-                    .load(String.valueOf(packageData.get("url_img")))
+                    .load(urlfoto)
                     .into(iv_package);
 
             // Set Package Name
@@ -320,6 +325,81 @@ public class PackageSnackAActivity extends AppCompatActivity {
             selectedBoxB = new TreeMap<Integer, PackageChoice>();
             selectedBoxC = new TreeMap<Integer, PackageChoice>();
             selectedBoxD = new TreeMap<Integer, PackageChoice>();
+
+            if(NECESSITY.equals("EDIT")) {
+                // Setting The SelectedBox
+                selectedBoxA = PackageSnackASelect.getCollectionSelected().get(menu.get(0));
+                selectedBoxB = PackageSnackASelect.getCollectionSelected().get(menu.get(1));
+                selectedBoxC = PackageSnackASelect.getCollectionSelected().get(menu.get(2));
+                selectedBoxD = PackageSnackASelect.getCollectionSelected().get(menu.get(3));
+
+                /*
+                 * START OF Get The Sum Of SelectedBox Hashmap
+                 */
+                int sumA = 0;
+                for (PackageChoice p : selectedBoxA.values()) {
+                    sumA += p.getHarga();
+                }
+                finalPrice.put(1,  sumA);
+
+                int sumB = 0;
+                for (PackageChoice p : selectedBoxB.values()) {
+                    sumB += p.getHarga();
+                }
+                finalPrice.put(2,  sumB);
+
+                int sumC = 0;
+                for (PackageChoice p : selectedBoxC.values()) {
+                    sumC += p.getHarga();
+                }
+                finalPrice.put(3,  sumC);
+
+                int sumD = 0;
+                for (PackageChoice p : selectedBoxD.values()) {
+                    sumD += p.getHarga();
+                }
+                finalPrice.put(4,  sumD);
+
+                /*
+                 * END OF Get The Sum Of SelectedBox Hashmap
+                 */
+
+                // Get The Updated Sums
+                int sumAll = 0;
+                for (int s : finalPrice.values()) {
+                    sumAll += s;
+                }
+
+                String strSumPrice = String.format("%,d", sumAll);
+                pricePorsi.setText("Rp " + strSumPrice);
+
+                //Simpan Pilihan Radio Button di tiap pilihan
+                List<Integer> radioChoiceNumber = new ArrayList<>();
+
+                // UBAH listChoices sesuai dengan pilihan di TreeMap
+                for(int i = 0; i < listChoices.size(); i++) {
+                    for(int j = 0; j < listChoices.get(i).size(); j++) {
+                        // Get Value of a TreeMap based on Key that was saved on menu List
+                        TreeMap<Integer, PackageChoice> selectedBox = PackageSnackASelect.getCollectionSelected().get(menu.get(i));
+
+                        for(Map.Entry<Integer, PackageChoice> entry : selectedBox.entrySet()) {
+                            String listNama = listChoices.get(i).get(j).getNama();
+                            String mapNama = entry.getValue().getNama();
+                            if(listNama.equals(mapNama)) {
+                                listChoices.get(i).get(j).setSelected(true);
+                                radioChoiceNumber.add(j);
+                            }
+                        }
+                    }
+                }
+
+                Log.e(TAG, "Size of RadioChoiceNumber: " + radioChoiceNumber.size());
+                preSelectedIndexA = radioChoiceNumber.get(0);
+                preSelectedIndexB = radioChoiceNumber.get(1);
+                preSelectedIndexC = radioChoiceNumber.get(2);
+                preSelectedIndexD = radioChoiceNumber.get(3);
+
+            }
 
             // Setting Adapter For Each ListView
             final PackageRadioAdapter adapterA = new PackageRadioAdapter(PackageSnackAActivity.this, listChoices.get(0));
@@ -402,7 +482,8 @@ public class PackageSnackAActivity extends AppCompatActivity {
                     intent.putExtra("NAMA", model.getNama());
                     intent.putExtra("HARGA", model.getHarga());
                     intent.putExtra("DESKRIPSI", model.getDeskripsi());
-                    intent.putExtra("URLIMG", model.getUrlImg());
+                    String urlfoto = getString(R.string.base_url) + "makanan/" + model.getUrlImg();
+                    intent.putExtra("URLIMG", urlfoto);
 
                     startActivity(intent);
                 }
@@ -473,7 +554,8 @@ public class PackageSnackAActivity extends AppCompatActivity {
                     intent.putExtra("NAMA", model.getNama());
                     intent.putExtra("HARGA", model.getHarga());
                     intent.putExtra("DESKRIPSI", model.getDeskripsi());
-                    intent.putExtra("URLIMG", model.getUrlImg());
+                    String urlfoto = getString(R.string.base_url) + "makanan/" + model.getUrlImg();
+                    intent.putExtra("URLIMG", urlfoto);
 
                     startActivity(intent);
                 }
@@ -544,7 +626,8 @@ public class PackageSnackAActivity extends AppCompatActivity {
                     intent.putExtra("NAMA", model.getNama());
                     intent.putExtra("HARGA", model.getHarga());
                     intent.putExtra("DESKRIPSI", model.getDeskripsi());
-                    intent.putExtra("URLIMG", model.getUrlImg());
+                    String urlfoto = getString(R.string.base_url) + "makanan/" + model.getUrlImg();
+                    intent.putExtra("URLIMG", urlfoto);
 
                     startActivity(intent);
                 }
@@ -615,7 +698,8 @@ public class PackageSnackAActivity extends AppCompatActivity {
                     intent.putExtra("NAMA", model.getNama());
                     intent.putExtra("HARGA", model.getHarga());
                     intent.putExtra("DESKRIPSI", model.getDeskripsi());
-                    intent.putExtra("URLIMG", model.getUrlImg());
+                    String urlfoto = getString(R.string.base_url) + "makanan/" + model.getUrlImg();
+                    intent.putExtra("URLIMG", urlfoto);
 
                     startActivity(intent);
                 }
@@ -642,13 +726,14 @@ public class PackageSnackAActivity extends AppCompatActivity {
                             finalSum += s;
                         }
 
-                        PackageSnackASelect.setCollectionSelected(collectionSelected);
+                        PackageSnackASelect.setTemporaryCollectionSelected(collectionSelected);
 
                         Intent i = new Intent(getApplicationContext(), PackageInputDetailPengirimanActivity.class);
                         i.putExtra("NamaKategori", "Snack Box");
                         i.putExtra("NamaPackage", String.valueOf(packageData.get("package_name")));
                         i.putExtra("DefaultPrice", (Integer) packageData.get("harga_default"));
                         i.putExtra("FinalPrice", finalSum);
+                        i.putExtra("NECESSITY", getIntent().getStringExtra("NECESSITY"));
                         startActivity(i);
 
                     }

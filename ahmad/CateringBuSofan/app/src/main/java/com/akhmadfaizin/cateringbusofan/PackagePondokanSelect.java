@@ -18,6 +18,7 @@ public final class PackagePondokanSelect {
     private static String alamat;
     private static String catatan;
     private static LinkedHashMap<String, TreeMap<Integer, PackageChoice>> collectionSelected;
+    private static LinkedHashMap<String, TreeMap<Integer, PackageChoice>> temporaryCollectionSelected;
 
     public static String getNamaKategori() {
         return namaKategori;
@@ -123,6 +124,14 @@ public final class PackagePondokanSelect {
         PackagePondokanSelect.collectionSelected = collectionSelected;
     }
 
+    public static LinkedHashMap<String, TreeMap<Integer, PackageChoice>> getTemporaryCollectionSelected() {
+        return temporaryCollectionSelected;
+    }
+
+    public static void setTemporaryCollectionSelected(LinkedHashMap<String, TreeMap<Integer, PackageChoice>> temporaryCollectionSelected) {
+        PackagePondokanSelect.temporaryCollectionSelected = temporaryCollectionSelected;
+    }
+
     public static void reset() {
         PackagePondokanSelect.namaKategori = "";
         PackagePondokanSelect.namaPackage = "";
@@ -137,5 +146,6 @@ public final class PackagePondokanSelect {
         PackagePondokanSelect.alamat = "";
         PackagePondokanSelect.catatan = "";
         PackagePondokanSelect.collectionSelected = null;
+        PackagePondokanSelect.temporaryCollectionSelected = null;
     }
 }

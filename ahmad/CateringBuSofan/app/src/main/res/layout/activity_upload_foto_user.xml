@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.akhmadfaizin.cateringbusofan.UploadFotoUserActivity">
+
+    <com.akhmadfaizin.cateringbusofan.TouchImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:layout_marginTop="?android:attr/actionBarSize"
+        android:src="@drawable/profile"/>
+
+    <LinearLayout
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="18dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/buttonCancel"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="60dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="8dp"
+            android:background="#781010"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#ccc3c3"
+            android:text="CANCEL"/>
+
+        <Button
+            android:id="@+id/buttonUpload"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="60dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="8dp"
+            android:background="#781010"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#ccc3c3"
+            android:text="UPLOAD"/>
+
+    </LinearLayout>
+</LinearLayout>

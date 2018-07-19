@@ -14,28 +14,28 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/imageView"
+        android:id="@+id/iv_profile"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
+        android:clickable="true"
         android:src="@drawable/profile" />
 
     <TextView
+        android:id="@+id/tv_fullname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="Akhmad Faizin"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
+        android:id="@+id/tv_phone"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="0822 1234 5678" />
+        android:layout_height="wrap_content" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tv_alamat"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Jl. Ring Road Utara, Condong Catur, Sleman, Yogyakarta Jl. Ring Road Utara, Condong Catur, Sleman, Yogyakarta" />
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

@@ -38,6 +38,7 @@ public class PackageNasiDActivity extends AppCompatActivity {
     private String TAG = PackageNasiDActivity.class.getSimpleName();
     List<List<PackageChoice>> listChoices;  // Store List Of Packages Choices available
     private ProgressDialog pDialog;
+    private String NECESSITY;
 
     private ListView listViewA;
     private TextView titleA,
@@ -51,6 +52,8 @@ public class PackageNasiDActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_package_nasi_c);
+
+        NECESSITY = getIntent().getStringExtra("NECESSITY");
 
         // Setting Color of Status Bar
         if (Build.VERSION.SDK_INT >= 21) {
@@ -92,7 +95,7 @@ public class PackageNasiDActivity extends AppCompatActivity {
             HttpHandler sh = new HttpHandler();
 
             // URL to get JSON
-            String url = "https://api.mlab.com/api/1/databases/cateringbusofan/collections/menu?q={%22category%22:%22Nasi%20Box%22}&apiKey=x12MbBjL_GcDU4cpE6VDnZ-Ghj3qvvMI";
+            String url = getString(R.string.base_url) + "menu?category=Nasi%20Box";
 
             // Making a request to url and getting response
             String jsonStr = sh.goGetApi(url);
@@ -159,14 +162,14 @@ public class PackageNasiDActivity extends AppCompatActivity {
                     .fetch();
 
             // Getting The Choice Package JSON
-            String urla = "https://api.mlab.com/api/1/databases/cateringbusofan/collections/item?q={%22namaItem%22:%22Nasi%20Putih%20Box%22}&apiKey=x12MbBjL_GcDU4cpE6VDnZ-Ghj3qvvMI";
-            String urlb = "https://api.mlab.com/api/1/databases/cateringbusofan/collections/item?q={%22namaItem%22:%22Ayam%201/4%22}&apiKey=x12MbBjL_GcDU4cpE6VDnZ-Ghj3qvvMI";
-            String urlc = "https://api.mlab.com/api/1/databases/cateringbusofan/collections/item?q={%22namaItem%22:%22Sambal%20Goreng%20Bola%20Daging%22}&apiKey=x12MbBjL_GcDU4cpE6VDnZ-Ghj3qvvMI";
-            String urld = "https://api.mlab.com/api/1/databases/cateringbusofan/collections/item?q={%22namaItem%22:%22Mie%20Oriental%22}&apiKey=x12MbBjL_GcDU4cpE6VDnZ-Ghj3qvvMI";
-            String urle = "https://api.mlab.com/api/1/databases/cateringbusofan/collections/item?q={%22namaItem%22:%22Telur%20Pindang%202%20Buah%22}&apiKey=x12MbBjL_GcDU4cpE6VDnZ-Ghj3qvvMI";
-            String urlf = "https://api.mlab.com/api/1/databases/cateringbusofan/collections/item?q={%22namaItem%22:%22Gudangan%22}&apiKey=x12MbBjL_GcDU4cpE6VDnZ-Ghj3qvvMI";
-            String urlg = "https://api.mlab.com/api/1/databases/cateringbusofan/collections/item?q={%22namaItem%22:%22Pisang%22}&apiKey=x12MbBjL_GcDU4cpE6VDnZ-Ghj3qvvMI";
-            String urlh = "https://api.mlab.com/api/1/databases/cateringbusofan/collections/item?q={%22namaItem%22:%22Kerupuk%20Box%22}&apiKey=x12MbBjL_GcDU4cpE6VDnZ-Ghj3qvvMI";
+            String urla = getString(R.string.base_url) + "item?namaItem=Nasi%20Putih%20Box";
+            String urlb = getString(R.string.base_url) + "item?namaItem=Ayam%201/4";
+            String urlc = getString(R.string.base_url) + "item?namaItem=Sambal%20Goreng%20Bola%20Daging";
+            String urld = getString(R.string.base_url) + "item?namaItem=Mie%20Oriental";
+            String urle = getString(R.string.base_url) + "item?namaItem=Telur%20Pindang%202%20Buah";
+            String urlf = getString(R.string.base_url) + "item?namaItem=Gudangan";
+            String urlg = getString(R.string.base_url) + "item?namaItem=Pisang";
+            String urlh = getString(R.string.base_url) + "item?namaItem=Kerupuk%20Box";
 
             // Making a request to url and getting response
             String jsonStr_a = sh.goGetApi(urla);
@@ -265,8 +268,9 @@ public class PackageNasiDActivity extends AppCompatActivity {
 
             // Setting The Package Image
             ImageView iv_package = findViewById(R.id.iv_package);
+            String urlfoto = getString(R.string.base_url) + "makanan/" + String.valueOf(packageData.get("url_img"));
             Picasso.with(PackageNasiDActivity.this)
-                    .load(String.valueOf(packageData.get("url_img")))
+                    .load(urlfoto)
                     .into(iv_package);
 
             // Set Package Name
@@ -322,7 +326,8 @@ public class PackageNasiDActivity extends AppCompatActivity {
                     intent.putExtra("NAMA", model.getNama());
                     intent.putExtra("HARGA", model.getHarga());
                     intent.putExtra("DESKRIPSI", model.getDeskripsi());
-                    intent.putExtra("URLIMG", model.getUrlImg());
+                    String urlfoto = getString(R.string.base_url) + "makanan/" + model.getUrlImg();
+                    intent.putExtra("URLIMG", urlfoto);
 
                     startActivity(intent);
                 }
@@ -340,13 +345,14 @@ public class PackageNasiDActivity extends AppCompatActivity {
 
                     collectionSelected.put(titleA.getText().toString(), selectedBoxA);
 
-                    PackageNasiDSelect.setCollectionSelected(collectionSelected);
+                    PackageNasiDSelect.setTemporaryCollectionSelected(collectionSelected);
 
                     Intent i = new Intent(getApplicationContext(), PackageInputDetailPengirimanActivity.class);
                     i.putExtra("NamaKategori", "Nasi Box");
                     i.putExtra("NamaPackage", String.valueOf(packageData.get("package_name")));
                     i.putExtra("DefaultPrice", (Integer) packageData.get("harga_default"));
                     i.putExtra("FinalPrice", (defaultPrice + additionalPrice));
+                    i.putExtra("NECESSITY", getIntent().getStringExtra("NECESSITY"));
                     startActivity(i);
                 }
             });

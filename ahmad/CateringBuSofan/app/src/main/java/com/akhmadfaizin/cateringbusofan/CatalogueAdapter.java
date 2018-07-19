@@ -11,6 +11,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 public class CatalogueAdapter extends BaseAdapter {
@@ -18,8 +20,10 @@ public class CatalogueAdapter extends BaseAdapter {
     private static final int CATALOGUE_ITEM = 0;
     private static final int HEADER = 1;
     private LayoutInflater inflater;
+    private Context context;
 
     public CatalogueAdapter(Context context, ArrayList<Object> list) {
+        this.context = context;
         this.list = list;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -71,7 +75,11 @@ public class CatalogueAdapter extends BaseAdapter {
                 ImageView image = (ImageView) view.findViewById(R.id.lv_catalogue_item_img);
                 TextView name = (TextView) view.findViewById(R.id.lv_catalogue_item_name);
 
-                image.setImageResource(((Catalogue)list.get(i)).getImage());
+                Picasso.with(context)
+                        .load(((Catalogue)list.get(i)).getImage())
+                        .resize(75, 75)
+                        .into(image);
+
                 name.setText(((Catalogue)list.get(i)).getName());
                 break;
             case HEADER:

@@ -18,6 +18,7 @@ public final class PackageBuffetBSelect {
     private static String alamat;
     private static String catatan;
     private static LinkedHashMap<String, TreeMap<Integer, PackageChoice>> collectionSelected;
+    private static LinkedHashMap<String, TreeMap<Integer, PackageChoice>> temporaryCollectionSelected;
 
     public static String getNamaKategori() {
         return namaKategori;
@@ -123,6 +124,14 @@ public final class PackageBuffetBSelect {
         PackageBuffetBSelect.collectionSelected = collectionSelected;
     }
 
+    public static LinkedHashMap<String, TreeMap<Integer, PackageChoice>> getTemporaryCollectionSelected() {
+        return temporaryCollectionSelected;
+    }
+
+    public static void setTemporaryCollectionSelected(LinkedHashMap<String, TreeMap<Integer, PackageChoice>> temporaryCollectionSelected) {
+        PackageBuffetBSelect.temporaryCollectionSelected = temporaryCollectionSelected;
+    }
+
     public static void reset() {
         PackageBuffetBSelect.namaKategori = "";
         PackageBuffetBSelect.namaPackage = "";
@@ -137,5 +146,6 @@ public final class PackageBuffetBSelect {
         PackageBuffetBSelect.alamat = "";
         PackageBuffetBSelect.catatan = "";
         PackageBuffetBSelect.collectionSelected = null;
+        PackageBuffetBSelect.temporaryCollectionSelected = null;
     }
 }

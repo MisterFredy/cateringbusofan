@@ -104,7 +104,7 @@
                     android:hint="No Handphone"
                     android:inputType="phone"
                     android:digits="01234567890-"
-                    android:maxLength="15"
+                    android:maxLength="17"
                     android:paddingBottom="7dp"
                     android:paddingLeft="18dp"
                     android:paddingRight="18dp" />
@@ -131,7 +131,7 @@
                     android:layout_marginTop="16dp"
                     android:background="@drawable/textarea_input"
                     android:gravity="top"
-                    android:hint="Catatan"
+                    android:hint="Catatan (Opsional)"
                     android:maxLength="255"
                     android:inputType="textMultiLine"
                     android:paddingLeft="18dp"

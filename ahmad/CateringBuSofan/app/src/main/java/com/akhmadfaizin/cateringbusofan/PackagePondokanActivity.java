@@ -32,6 +32,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.TreeMap;
 
 public class PackagePondokanActivity extends AppCompatActivity {
@@ -39,6 +40,7 @@ public class PackagePondokanActivity extends AppCompatActivity {
     private String TAG = PackagePondokanActivity.class.getSimpleName();
     List<List<PackageChoice>> listChoices;  // Store List Of Packages Choices available
     private ProgressDialog pDialog;
+    private String NECESSITY;
 
     private ListView listViewA,
             listViewB ,
@@ -81,6 +83,8 @@ public class PackagePondokanActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_package_pondokan);
 
+        NECESSITY = getIntent().getStringExtra("NECESSITY");
+
         // Setting Color of Status Bar
         if (Build.VERSION.SDK_INT >= 21) {
             Window window = getWindow();
@@ -120,7 +124,7 @@ public class PackagePondokanActivity extends AppCompatActivity {
             HttpHandler sh = new HttpHandler();
 
             // URL to get contacts JSON Snack B
-            String url = "https://api.mlab.com/api/1/databases/cateringbusofan/collections/menu?q={%22category%22:%22Pondokan%22}&apiKey=x12MbBjL_GcDU4cpE6VDnZ-Ghj3qvvMI";
+            String url = getString(R.string.base_url) + "menu?category=Pondokan";
 
             // Making a request to url and getting response
             String jsonStr = sh.goGetApi(url);
@@ -189,16 +193,16 @@ public class PackagePondokanActivity extends AppCompatActivity {
                     .fetch();
 
             // Getting The Choice Package JSON
-            String urla = "https://api.mlab.com/api/1/databases/cateringbusofan/collections/item?q={%22namaItem%22:%22Aneka%20Soto%22}&apiKey=x12MbBjL_GcDU4cpE6VDnZ-Ghj3qvvMI";
-            String urlb = "https://api.mlab.com/api/1/databases/cateringbusofan/collections/item?q={%22namaItem%22:%22Menu%20Nusantara%22}&apiKey=x12MbBjL_GcDU4cpE6VDnZ-Ghj3qvvMI";
-            String urlc = "https://api.mlab.com/api/1/databases/cateringbusofan/collections/item?q={%22namaItem%22:%22Menu%20Nasi%22}&apiKey=x12MbBjL_GcDU4cpE6VDnZ-Ghj3qvvMI";
-            String urld = "https://api.mlab.com/api/1/databases/cateringbusofan/collections/item?q={%22namaItem%22:%22Aneka%20Mie%22}&apiKey=x12MbBjL_GcDU4cpE6VDnZ-Ghj3qvvMI";
-            String urle = "https://api.mlab.com/api/1/databases/cateringbusofan/collections/item?q={%22namaItem%22:%22Aneka%20Bakso%22}&apiKey=x12MbBjL_GcDU4cpE6VDnZ-Ghj3qvvMI";
-            String urlf = "https://api.mlab.com/api/1/databases/cateringbusofan/collections/item?q={%22namaItem%22:%22Menu%20Spesial%22}&apiKey=x12MbBjL_GcDU4cpE6VDnZ-Ghj3qvvMI";
-            String urlg = "https://api.mlab.com/api/1/databases/cateringbusofan/collections/item?q={%22namaItem%22:%22Aneka%20Sate%22}&apiKey=x12MbBjL_GcDU4cpE6VDnZ-Ghj3qvvMI";
-            String urlh = "https://api.mlab.com/api/1/databases/cateringbusofan/collections/item?q={%22namaItem%22:%22Aneka%20Minuman%22}&apiKey=x12MbBjL_GcDU4cpE6VDnZ-Ghj3qvvMI";
-            String urli = "https://api.mlab.com/api/1/databases/cateringbusofan/collections/item?q={%22namaItem%22:%22Aneka%20Pelengkap%22}&apiKey=x12MbBjL_GcDU4cpE6VDnZ-Ghj3qvvMI";
-            String urlj = "https://api.mlab.com/api/1/databases/cateringbusofan/collections/item?q={%22namaItem%22:%22Coffe%20Break%22}&apiKey=x12MbBjL_GcDU4cpE6VDnZ-Ghj3qvvMI";
+            String urla = getString(R.string.base_url) + "item?namaItem=Aneka%20Soto";
+            String urlb = getString(R.string.base_url) + "item?namaItem=Menu%20Nusantara";
+            String urlc = getString(R.string.base_url) + "item?namaItem=Menu%20Nasi";
+            String urld = getString(R.string.base_url) + "item?namaItem=Aneka%20Mie";
+            String urle = getString(R.string.base_url) + "item?namaItem=Aneka%20Bakso";
+            String urlf = getString(R.string.base_url) + "item?namaItem=Menu%20Spesial";
+            String urlg = getString(R.string.base_url) + "item?namaItem=Aneka%20Sate";
+            String urlh = getString(R.string.base_url) + "item?namaItem=Aneka%20Minuman";
+            String urli = getString(R.string.base_url) + "item?namaItem=Aneka%20Pelengkap";
+            String urlj = getString(R.string.base_url) + "item?namaItem=Coffe%20Break";
 
             // Making a request to url and getting response
             String jsonStr_a = sh.goGetApi(urla);
@@ -309,8 +313,9 @@ public class PackagePondokanActivity extends AppCompatActivity {
 
             // Setting The Package Image
             ImageView iv_package = findViewById(R.id.iv_package);
+            String urlfoto = getString(R.string.base_url) + "makanan/" + String.valueOf(packageData.get("url_img"));
             Picasso.with(PackagePondokanActivity.this)
-                    .load(String.valueOf(packageData.get("url_img")))
+                    .load(urlfoto)
                     .into(iv_package);
 
             // Set Package Name
@@ -394,6 +399,111 @@ public class PackagePondokanActivity extends AppCompatActivity {
             selectedBoxH = new TreeMap<Integer, PackageChoice>();
             selectedBoxI = new TreeMap<Integer, PackageChoice>();
             selectedBoxJ = new TreeMap<Integer, PackageChoice>();
+
+            if(NECESSITY.equals("EDIT")) {
+                // Setting The SelectedBox
+                selectedBoxA = PackagePondokanSelect.getCollectionSelected().get(menu.get(0));
+                selectedBoxB = PackagePondokanSelect.getCollectionSelected().get(menu.get(1));
+                selectedBoxC = PackagePondokanSelect.getCollectionSelected().get(menu.get(2));
+                selectedBoxD = PackagePondokanSelect.getCollectionSelected().get(menu.get(3));
+                selectedBoxE = PackagePondokanSelect.getCollectionSelected().get(menu.get(4));
+                selectedBoxF = PackagePondokanSelect.getCollectionSelected().get(menu.get(5));
+                selectedBoxG = PackagePondokanSelect.getCollectionSelected().get(menu.get(6));
+                selectedBoxH = PackagePondokanSelect.getCollectionSelected().get(menu.get(7));
+                selectedBoxI = PackagePondokanSelect.getCollectionSelected().get(menu.get(8));
+                selectedBoxJ = PackagePondokanSelect.getCollectionSelected().get(menu.get(9));
+
+                /*
+                * START OF Get The Sum Of SelectedBox Hashmap
+                */
+                int sumA = 0;
+                for (PackageChoice p : selectedBoxA.values()) {
+                    sumA += p.getHarga();
+                }
+                finalPrice.put(1,  sumA);
+
+                int sumB = 0;
+                for (PackageChoice p : selectedBoxB.values()) {
+                    sumB += p.getHarga();
+                }
+                finalPrice.put(2,  sumB);
+
+                int sumC = 0;
+                for (PackageChoice p : selectedBoxC.values()) {
+                    sumC += p.getHarga();
+                }
+                finalPrice.put(3,  sumC);
+
+                int sumD = 0;
+                for (PackageChoice p : selectedBoxD.values()) {
+                    sumD += p.getHarga();
+                }
+                finalPrice.put(4,  sumD);
+
+                int sumE = 0;
+                for (PackageChoice p : selectedBoxE.values()) {
+                    sumE += p.getHarga();
+                }
+                finalPrice.put(5,  sumE);
+
+                int sumF = 0;
+                for (PackageChoice p : selectedBoxF.values()) {
+                    sumF += p.getHarga();
+                }
+                finalPrice.put(6,  sumF);
+
+                int sumG = 0;
+                for (PackageChoice p : selectedBoxG.values()) {
+                    sumG += p.getHarga();
+                }
+                finalPrice.put(7,  sumG);
+
+                int sumH = 0;
+                for (PackageChoice p : selectedBoxH.values()) {
+                    sumH += p.getHarga();
+                }
+                finalPrice.put(8,  sumH);
+
+                int sumI = 0;
+                for (PackageChoice p : selectedBoxI.values()) {
+                    sumI += p.getHarga();
+                }
+                finalPrice.put(9,  sumI);
+
+                int sumJ = 0;
+                for (PackageChoice p : selectedBoxJ.values()) {
+                    sumJ += p.getHarga();
+                }
+                finalPrice.put(10,  sumJ);
+                /*
+                * END OF Get The Sum Of SelectedBox Hashmap
+                */
+
+                // Get The Updated Sums
+                int sumAll = 0;
+                for (int s : finalPrice.values()) {
+                    sumAll += s;
+                }
+
+                String strSumPrice = String.format("%,d", sumAll);
+                pricePorsi.setText("Rp " + strSumPrice);
+
+                // UBAH listChoices sesuai dengan pilihan di TreeMap
+                for(int i = 0; i < listChoices.size(); i++) {
+                    for(int j = 0; j < listChoices.get(i).size(); j++) {
+                        // Get Value of a TreeMap based on Key that was saved on menu List
+                        TreeMap<Integer, PackageChoice> selectedBox = PackagePondokanSelect.getCollectionSelected().get(menu.get(i));
+
+                        for(Map.Entry<Integer, PackageChoice> entry : selectedBox.entrySet()) {
+                            String listNama = listChoices.get(i).get(j).getNama();
+                            String mapNama = entry.getValue().getNama();
+                            if(listNama.equals(mapNama)) {
+                                listChoices.get(i).get(j).setSelected(true);
+                            }
+                        }
+                    }
+                }
+            }
 
             // Setting Adapter For Each ListView
             final PackageCheckboxAdapter adapterA = new PackageCheckboxAdapter(PackagePondokanActivity.this, listChoices.get(0));
@@ -489,7 +599,8 @@ public class PackagePondokanActivity extends AppCompatActivity {
                     intent.putExtra("NAMA", model.getNama());
                     intent.putExtra("HARGA", model.getHarga());
                     intent.putExtra("DESKRIPSI", model.getDeskripsi());
-                    intent.putExtra("URLIMG", model.getUrlImg());
+                    String urlfoto = getString(R.string.base_url) + "makanan/" + model.getUrlImg();
+                    intent.putExtra("URLIMG", urlfoto);
 
                     startActivity(intent);
                 }
@@ -555,7 +666,8 @@ public class PackagePondokanActivity extends AppCompatActivity {
                     intent.putExtra("NAMA", model.getNama());
                     intent.putExtra("HARGA", model.getHarga());
                     intent.putExtra("DESKRIPSI", model.getDeskripsi());
-                    intent.putExtra("URLIMG", model.getUrlImg());
+                    String urlfoto = getString(R.string.base_url) + "makanan/" + model.getUrlImg();
+                    intent.putExtra("URLIMG", urlfoto);
 
                     startActivity(intent);
                 }
@@ -621,7 +733,8 @@ public class PackagePondokanActivity extends AppCompatActivity {
                     intent.putExtra("NAMA", model.getNama());
                     intent.putExtra("HARGA", model.getHarga());
                     intent.putExtra("DESKRIPSI", model.getDeskripsi());
-                    intent.putExtra("URLIMG", model.getUrlImg());
+                    String urlfoto = getString(R.string.base_url) + "makanan/" + model.getUrlImg();
+                    intent.putExtra("URLIMG", urlfoto);
 
                     startActivity(intent);
                 }
@@ -687,7 +800,8 @@ public class PackagePondokanActivity extends AppCompatActivity {
                     intent.putExtra("NAMA", model.getNama());
                     intent.putExtra("HARGA", model.getHarga());
                     intent.putExtra("DESKRIPSI", model.getDeskripsi());
-                    intent.putExtra("URLIMG", model.getUrlImg());
+                    String urlfoto = getString(R.string.base_url) + "makanan/" + model.getUrlImg();
+                    intent.putExtra("URLIMG", urlfoto);
 
                     startActivity(intent);
                 }
@@ -753,7 +867,8 @@ public class PackagePondokanActivity extends AppCompatActivity {
                     intent.putExtra("NAMA", model.getNama());
                     intent.putExtra("HARGA", model.getHarga());
                     intent.putExtra("DESKRIPSI", model.getDeskripsi());
-                    intent.putExtra("URLIMG", model.getUrlImg());
+                    String urlfoto = getString(R.string.base_url) + "makanan/" + model.getUrlImg();
+                    intent.putExtra("URLIMG", urlfoto);
 
                     startActivity(intent);
                 }
@@ -819,7 +934,8 @@ public class PackagePondokanActivity extends AppCompatActivity {
                     intent.putExtra("NAMA", model.getNama());
                     intent.putExtra("HARGA", model.getHarga());
                     intent.putExtra("DESKRIPSI", model.getDeskripsi());
-                    intent.putExtra("URLIMG", model.getUrlImg());
+                    String urlfoto = getString(R.string.base_url) + "makanan/" + model.getUrlImg();
+                    intent.putExtra("URLIMG", urlfoto);
 
                     startActivity(intent);
                 }
@@ -885,7 +1001,8 @@ public class PackagePondokanActivity extends AppCompatActivity {
                     intent.putExtra("NAMA", model.getNama());
                     intent.putExtra("HARGA", model.getHarga());
                     intent.putExtra("DESKRIPSI", model.getDeskripsi());
-                    intent.putExtra("URLIMG", model.getUrlImg());
+                    String urlfoto = getString(R.string.base_url) + "makanan/" + model.getUrlImg();
+                    intent.putExtra("URLIMG", urlfoto);
 
                     startActivity(intent);
                 }
@@ -951,7 +1068,8 @@ public class PackagePondokanActivity extends AppCompatActivity {
                     intent.putExtra("NAMA", model.getNama());
                     intent.putExtra("HARGA", model.getHarga());
                     intent.putExtra("DESKRIPSI", model.getDeskripsi());
-                    intent.putExtra("URLIMG", model.getUrlImg());
+                    String urlfoto = getString(R.string.base_url) + "makanan/" + model.getUrlImg();
+                    intent.putExtra("URLIMG", urlfoto);
 
                     startActivity(intent);
                 }
@@ -1017,7 +1135,8 @@ public class PackagePondokanActivity extends AppCompatActivity {
                     intent.putExtra("NAMA", model.getNama());
                     intent.putExtra("HARGA", model.getHarga());
                     intent.putExtra("DESKRIPSI", model.getDeskripsi());
-                    intent.putExtra("URLIMG", model.getUrlImg());
+                    String urlfoto = getString(R.string.base_url) + "makanan/" + model.getUrlImg();
+                    intent.putExtra("URLIMG", urlfoto);
 
                     startActivity(intent);
                 }
@@ -1083,7 +1202,8 @@ public class PackagePondokanActivity extends AppCompatActivity {
                     intent.putExtra("NAMA", model.getNama());
                     intent.putExtra("HARGA", model.getHarga());
                     intent.putExtra("DESKRIPSI", model.getDeskripsi());
-                    intent.putExtra("URLIMG", model.getUrlImg());
+                    String urlfoto = getString(R.string.base_url) + "makanan/" + model.getUrlImg();
+                    intent.putExtra("URLIMG", urlfoto);
 
                     startActivity(intent);
                 }
@@ -1116,13 +1236,14 @@ public class PackagePondokanActivity extends AppCompatActivity {
                             finalSum += s;
                         }
 
-                        PackagePondokanSelect.setCollectionSelected(collectionSelected);
+                        PackagePondokanSelect.setTemporaryCollectionSelected(collectionSelected);
 
                         Intent i = new Intent(getApplicationContext(), PackageInputDetailPengirimanActivity.class);
                         i.putExtra("NamaKategori", "Pondokan");
                         i.putExtra("NamaPackage", String.valueOf(packageData.get("package_name")));
                         i.putExtra("DefaultPrice", (Integer) packageData.get("harga_default"));
                         i.putExtra("FinalPrice", finalSum);
+                        i.putExtra("NECESSITY", getIntent().getStringExtra("NECESSITY"));
                         startActivity(i);
 
                     }

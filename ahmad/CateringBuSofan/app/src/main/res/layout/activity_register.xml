@@ -2,8 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_register"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:background="@drawable/gradient_background"
     tools:context="com.akhmadfaizin.cateringbusofan.RegisterActivity">
 
@@ -34,55 +37,68 @@
                 android:orientation="vertical">
 
                 <EditText
+                    android:id="@+id/et_username"
                     android:layout_width="276dp"
                     android:layout_height="55dp"
                     android:background="@drawable/text_input"
                     android:hint="Username"
-                    android:inputType="textPersonName"
+                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890"
+                    android:inputType="textFilter"
+                    android:maxLength="20"
                     android:paddingBottom="7dp"
                     android:paddingLeft="18dp"
                     android:paddingRight="18dp" />
 
                 <EditText
+                    android:id="@+id/et_fullname"
+                    android:layout_width="276dp"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/text_input"
+                    android:hint="Nama Panjang"
+                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz "
+                    android:inputType="textFilter"
+                    android:maxLength="40"
+                    android:paddingBottom="7dp"
+                    android:paddingLeft="18dp"
+                    android:paddingRight="18dp" />
+
+                <EditText
+                    android:id="@+id/et_password"
                     android:layout_width="276dp"
                     android:layout_height="55dp"
                     android:layout_marginTop="16dp"
                     android:background="@drawable/text_input"
                     android:hint="Password"
                     android:inputType="textPassword"
+                    android:maxLength="15"
                     android:paddingBottom="7dp"
                     android:paddingLeft="18dp"
                     android:paddingRight="18dp" />
 
                 <EditText
+                    android:id="@+id/et_rpassword"
                     android:layout_width="276dp"
                     android:layout_height="55dp"
                     android:layout_marginTop="16dp"
                     android:background="@drawable/text_input"
                     android:hint="Ulang Password"
                     android:inputType="textPassword"
+                    android:maxLength="15"
                     android:paddingBottom="7dp"
                     android:paddingLeft="18dp"
                     android:paddingRight="18dp" />
 
                 <EditText
-                    android:layout_width="276dp"
-                    android:layout_height="55dp"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/text_input"
-                    android:hint="Nama Lengkap"
-                    android:inputType="textPersonName"
-                    android:paddingBottom="7dp"
-                    android:paddingLeft="18dp"
-                    android:paddingRight="18dp" />
-
-                <EditText
+                    android:id="@+id/et_phone"
                     android:layout_width="276dp"
                     android:layout_height="55dp"
                     android:layout_marginTop="16dp"
                     android:background="@drawable/text_input"
                     android:hint="No Handphone"
                     android:inputType="phone"
+                    android:digits="01234567890-"
+                    android:maxLength="17"
                     android:paddingBottom="7dp"
                     android:paddingLeft="18dp"
                     android:paddingRight="18dp" />
@@ -96,11 +112,13 @@
                     android:textSize="16sp" />
 
                 <RadioGroup
+                    android:id="@+id/rg_gender"
                     android:layout_width="276dp"
                     android:layout_height="35dp"
                     android:orientation="horizontal">
 
                     <RadioButton
+                        android:id="@+id/rb_laki"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -110,6 +128,7 @@
                         android:textSize="16sp" />
 
                     <RadioButton
+                        android:id="@+id/rb_perempuan"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -120,18 +139,21 @@
                 </RadioGroup>
 
                 <EditText
+                    android:id="@+id/et_alamat"
                     android:layout_width="276dp"
                     android:layout_height="110dp"
                     android:layout_marginTop="16dp"
                     android:background="@drawable/textarea_input"
                     android:gravity="top"
                     android:hint="Alamat"
-                    android:inputType="text|textMultiLine"
+                    android:maxLength="255"
+                    android:inputType="textMultiLine"
                     android:paddingLeft="18dp"
                     android:paddingRight="18dp"
                     android:paddingTop="10dp" />
 
                 <ImageButton
+                    android:id="@+id/btn_daftar"
                     android:layout_width="276dp"
                     android:layout_height="45dp"
                     android:layout_marginBottom="16dp"

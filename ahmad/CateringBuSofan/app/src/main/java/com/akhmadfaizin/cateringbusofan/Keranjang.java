@@ -1,24 +1,20 @@
 package com.akhmadfaizin.cateringbusofan;
 
-/**
- * Created by root on 5/17/18.
- */
-
 public class Keranjang {
     private String kategori;
     private String paket;
     private int perPorsi;
     private int kuantitasPorsi;
     private int subTotal;
-    // private String urlImg; (Belum disertakan gambar juga)
+    private int urlImg;
 
-
-    public Keranjang(String kategori, String paket, int perPorsi, int kuantitasPorsi, int subTotal) {
+    public Keranjang(String kategori, String paket, int perPorsi, int kuantitasPorsi, int subTotal, int urlImg) {
         this.kategori = kategori;
         this.paket = paket;
         this.perPorsi = perPorsi;
         this.kuantitasPorsi = kuantitasPorsi;
         this.subTotal = subTotal;
+        this.urlImg = urlImg;
     }
 
     public String getKategori() {
@@ -59,5 +55,13 @@ public class Keranjang {
 
     public void setSubTotal(int subTotal) {
         this.subTotal = subTotal;
+    }
+
+    public int getUrlImg() {
+        return urlImg;
+    }
+
+    public void setUrlImg(int urlImg) {
+        this.urlImg = urlImg;
     }
 }

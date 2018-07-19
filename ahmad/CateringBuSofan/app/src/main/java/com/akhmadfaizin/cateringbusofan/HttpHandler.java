@@ -13,10 +13,6 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 
-/**
- * Created by root on 5/4/18.
- */
-
 public class HttpHandler {
 
     private static final String TAG = HttpHandler.class.getSimpleName();
@@ -106,9 +102,86 @@ public class HttpHandler {
         try {
             URL url = new URL(reqUrl);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("PUT");
+            //conn.setRequestMethod("PUT");
+            conn.setRequestMethod("POST");
             conn.setRequestProperty("Content-Type", "application/json");
             conn.setRequestProperty("Accept","application/json");
+            conn.setDoOutput(true);
+            conn.setDoInput(true);
+            conn.connect();
+
+            DataOutputStream os = new DataOutputStream(conn.getOutputStream());
+            os.writeBytes(jsonString);
+
+            os.flush();
+            os.close();
+
+            Log.i("STATUS", String.valueOf(conn.getResponseCode()));
+            Log.i("MSG" , conn.getResponseMessage());
+
+            conn.disconnect();
+
+            if(conn.getResponseCode() == 200) {
+                response = true;
+            }
+
+
+        } catch (MalformedURLException e) {
+            Log.e(TAG, "MalformedURLException: " + e.getMessage());
+        } catch (ProtocolException e) {
+            Log.e(TAG, "ProtocolException: " + e.getMessage());
+        } catch (IOException e) {
+            Log.e(TAG, "IOException: " + e.getMessage());
+        } catch (Exception e) {
+            Log.e(TAG, "Exception: " + e.getMessage());
+        }
+        return response;
+    }
+
+    public Boolean postUpdateAPINoJSON(String reqUrl) {
+        Boolean response = false;
+        try {
+            URL url = new URL(reqUrl);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            //conn.setRequestMethod("PUT");
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("Accept","application/json");
+            conn.setDoOutput(true);
+            conn.setDoInput(true);
+            conn.connect();
+
+            Log.i("STATUS", String.valueOf(conn.getResponseCode()));
+            Log.i("MSG" , conn.getResponseMessage());
+
+            conn.disconnect();
+
+            if(conn.getResponseCode() == 200 || conn.getResponseCode() == 201) {
+                response = true;
+            }
+
+
+        } catch (MalformedURLException e) {
+            Log.e(TAG, "MalformedURLException: " + e.getMessage());
+        } catch (ProtocolException e) {
+            Log.e(TAG, "ProtocolException: " + e.getMessage());
+        } catch (IOException e) {
+            Log.e(TAG, "IOException: " + e.getMessage());
+        } catch (Exception e) {
+            Log.e(TAG, "Exception: " + e.getMessage());
+        }
+        return response;
+    }
+
+    public Boolean postNotif(String reqUrl, String jsonString) {
+        Boolean response = false;
+        try {
+            URL url = new URL(reqUrl);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Type", "application/json");
+            String keyAuth = "key=AAAAv5ZqNKY:APA91bENbzDLtnjRZsqpCOgSryfVG0pf2rl8nYKjsN63f54dHDJss8Prdlf8pvnkR9aWYUqP3uOXs1TrT4I2HEhzwvz02vfwrDoImbisyA_qL2JGDgOttERjGdSfXu3uOBmsRHhVY6Qs0SMoqE4-Z7O7Lk7tEy2j4g";
+            conn.setRequestProperty("Authorization", keyAuth);
             conn.setDoOutput(true);
             conn.setDoInput(true);
             conn.connect();
@@ -135,4 +208,5 @@ public class HttpHandler {
         }
         return response;
     }
+
 }

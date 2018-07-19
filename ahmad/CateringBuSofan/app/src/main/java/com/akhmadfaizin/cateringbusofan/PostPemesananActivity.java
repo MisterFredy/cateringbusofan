@@ -2,6 +2,7 @@ package com.akhmadfaizin.cateringbusofan;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,40 +10,76 @@ import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.iid.FirebaseInstanceId;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.LinkedHashMap;
+import java.util.Locale;
 import java.util.TreeMap;
 
 public class PostPemesananActivity extends AppCompatActivity {
     private String TAG = PostPemesananActivity.class.getSimpleName();
     private String jsonString = "";
+    private String jsonNotifString = "";
     Boolean response = false;
     private ProgressDialog pDialog;
+    private String namaForNotif,
+                    tanggalPemesananForNotif;
+    Calendar myCalendar = Calendar.getInstance();
+    private int notifDateDay, notifDateMonth, notifDateYear;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_pemesanan);
 
-        String pemesan = "mubarok";
+        SharedPreferences sp = getSharedPreferences("LoginInfo", MODE_PRIVATE);
+        String user = sp.getString("username", null);
+        String nama = sp.getString("fullname", null);
+        //String urlphoto = sp.getString("urlfoto", null);
         String pengaprove = "";
-        String tanggalPemesanan = "24-08-2018";
-        String kodeTransaksi = "";
-        String approval = "Belum DP";
+        String tanggalPemesanan = getCurrentDate();
+        String approval = "Belum Disetujui";
+        String alasan = "Belum Bayar DP";
         int totalBayar = getIntent().getIntExtra("totalBayar", 0);
         int dp = 0;
-        int status = 1;
+        String status = "1";
+
+        // Untuk Notif
+        namaForNotif = nama;
+
+        // Ubah Menjadi Tanggal Format Indonesia
+        // Split Tanggal, Bulan, Tahun
+        String[] notifDateSplit = tanggalPemesanan.split("-");
+        notifDateDay = Integer.valueOf(notifDateSplit[0]);
+        notifDateMonth = Integer.valueOf(notifDateSplit[1]) - 1;
+        notifDateYear = Integer.valueOf(notifDateSplit[2]);
+        myCalendar.set(Calendar.YEAR, notifDateYear);
+        myCalendar.set(Calendar.MONTH, notifDateMonth);
+        myCalendar.set(Calendar.DAY_OF_MONTH, notifDateDay);
+
+        String viewFormat = "dd MMMM yyyy";
+        Locale id = new Locale("in", "ID");
+        SimpleDateFormat sdfView = new SimpleDateFormat(viewFormat, id);
+
+        tanggalPemesananForNotif = sdfView.format(myCalendar.getTime());
+
 
         // Create The Json
         try {
             JSONObject jsonRoot = new JSONObject();
-            jsonRoot.put("pemesan", pemesan);
+
+            jsonRoot.put("user", user);
             jsonRoot.put("pengaprove", pengaprove);
             jsonRoot.put("tanggalPemesanan", tanggalPemesanan);
-            jsonRoot.put("kodeTransaksi", kodeTransaksi);
             jsonRoot.put("approval", approval);
+            jsonRoot.put("alasan", alasan);
             jsonRoot.put("totalBayar", totalBayar);
             jsonRoot.put("dp", dp);
             jsonRoot.put("status", status);
@@ -74,12 +111,42 @@ public class PostPemesananActivity extends AppCompatActivity {
         protected Void doInBackground(Void... arg0) {
             HttpHandler sh = new HttpHandler();
             // Making a request to url and getting response
-            // Selain untuk POST, url ini juga bisa buat GET, jadi bisa buat ngecek
-            // perubahan setelah POST
-            String url = "https://api.mlab.com/api/1/databases/cateringbusofan/collections/pemesanan?apiKey=x12MbBjL_GcDU4cpE6VDnZ-Ghj3qvvMI";
-
+            String url = getString(R.string.base_url) + "pemesanan";
 
             response = sh.postInsertAPI(url, jsonString);
+
+            if(response) {
+                // Create The Json Untuk Notif
+                try {
+                    JSONObject jsonNotif = new JSONObject();
+
+                    jsonNotif.put("to", "/topics/owners");
+                    jsonNotif.put("priority", "high");
+
+                        JSONObject jsonNotifObject = new JSONObject();
+                        String bodyNotif = "Dari " + namaForNotif + "\n" + tanggalPemesananForNotif;
+                        jsonNotifObject.put("body", bodyNotif);
+                        jsonNotifObject.put("title", "Pesanan Baru");
+                    jsonNotif.put("notification", jsonNotifObject);
+
+                    Log.e(TAG, "JSON Untuk Dikirim: " + jsonNotif.toString());
+                    jsonNotifString = jsonNotif.toString();
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                // Post Notifikasi Ke Owner
+                String notifUrl = "https://fcm.googleapis.com/fcm/send";
+                Boolean notifResponse = sh.postNotif(notifUrl, jsonNotifString);
+
+                if(!notifResponse) {
+                    Log.e(TAG, "Notif gagal dikirim");
+                }
+
+
+            }
 
             return null;
         }
@@ -120,9 +187,18 @@ public class PostPemesananActivity extends AppCompatActivity {
     public void onBackPressed()
     {
         super.onBackPressed();
-        Intent i = new Intent(getApplicationContext(), HomeActivity.class);
+        Intent i = new Intent(getApplicationContext(), MainActivity.class);
         i.addFlags ( Intent.FLAG_ACTIVITY_CLEAR_TOP );
         startActivity(i);
+    }
+
+    // Get Current Date and Format it the return the string
+    public String getCurrentDate() {
+        Date currentTime = Calendar.getInstance().getTime();
+        String jsonFormat = "dd-MM-yyyy";
+        SimpleDateFormat sdfJson = new SimpleDateFormat(jsonFormat, Locale.US);
+
+        return sdfJson.format(currentTime);
     }
 
     public JSONArray getDetailPemesananJSONArray() {
@@ -130,6 +206,7 @@ public class PostPemesananActivity extends AppCompatActivity {
 
         // NASI BOX A
         if(PackageNasiASelect.getNamaPackage() != null && !PackageNasiASelect.getNamaPackage().isEmpty()) {
+            LinkedHashMap<String, TreeMap<Integer, PackageChoice>> collectionSelected = PackageNasiASelect.getCollectionSelected();
 
             try {
                 JSONObject listObject = new JSONObject();
@@ -137,6 +214,20 @@ public class PostPemesananActivity extends AppCompatActivity {
                 listObject.put("menu", PackageNasiASelect.getNamaPackage());
                 listObject.put("kuantitas", PackageNasiASelect.getKuantitas());
                 listObject.put("subtotal", PackageNasiASelect.getSubTotalPrice());
+
+                JSONArray jsonArrayList = new JSONArray();
+
+                for (LinkedHashMap.Entry<String, TreeMap<Integer, PackageChoice>> entry : collectionSelected.entrySet()) {
+                    String key = entry.getKey();
+                    TreeMap<Integer, PackageChoice> value = entry.getValue();
+
+                    for (PackageChoice p : value.values()) {
+                        jsonArrayList.put(p.getNama());
+                    }
+
+                }
+
+                listObject.put("detailMenu", jsonArrayList);
                 listObject.put("tanggalPengiriman", PackageNasiASelect.getTanggalPengiriman());
                 listObject.put("jamPengiriman", PackageNasiASelect.getJamPengiriman());
                 listObject.put("atasNama", PackageNasiASelect.getAtasNama());
@@ -151,6 +242,7 @@ public class PostPemesananActivity extends AppCompatActivity {
 
         // NASI BOX B
         if(PackageNasiBSelect.getNamaPackage() != null && !PackageNasiBSelect.getNamaPackage().isEmpty()) {
+            LinkedHashMap<String, TreeMap<Integer, PackageChoice>> collectionSelected = PackageNasiBSelect.getCollectionSelected();
 
             try {
                 JSONObject listObject = new JSONObject();
@@ -158,6 +250,20 @@ public class PostPemesananActivity extends AppCompatActivity {
                 listObject.put("menu", PackageNasiBSelect.getNamaPackage());
                 listObject.put("kuantitas", PackageNasiBSelect.getKuantitas());
                 listObject.put("subtotal", PackageNasiBSelect.getSubTotalPrice());
+
+                JSONArray jsonArrayList = new JSONArray();
+
+                for (LinkedHashMap.Entry<String, TreeMap<Integer, PackageChoice>> entry : collectionSelected.entrySet()) {
+                    String key = entry.getKey();
+                    TreeMap<Integer, PackageChoice> value = entry.getValue();
+
+                    for (PackageChoice p : value.values()) {
+                        jsonArrayList.put(p.getNama());
+                    }
+
+                }
+
+                listObject.put("detailMenu", jsonArrayList);
                 listObject.put("tanggalPengiriman", PackageNasiBSelect.getTanggalPengiriman());
                 listObject.put("jamPengiriman", PackageNasiBSelect.getJamPengiriman());
                 listObject.put("atasNama", PackageNasiBSelect.getAtasNama());
@@ -172,6 +278,7 @@ public class PostPemesananActivity extends AppCompatActivity {
 
         // NASI BOX C
         if(PackageNasiCSelect.getNamaPackage() != null && !PackageNasiCSelect.getNamaPackage().isEmpty()) {
+            LinkedHashMap<String, TreeMap<Integer, PackageChoice>> collectionSelected = PackageNasiCSelect.getCollectionSelected();
 
             try {
                 JSONObject listObject = new JSONObject();
@@ -179,6 +286,20 @@ public class PostPemesananActivity extends AppCompatActivity {
                 listObject.put("menu", PackageNasiCSelect.getNamaPackage());
                 listObject.put("kuantitas", PackageNasiCSelect.getKuantitas());
                 listObject.put("subtotal", PackageNasiCSelect.getSubTotalPrice());
+
+                JSONArray jsonArrayList = new JSONArray();
+
+                for (LinkedHashMap.Entry<String, TreeMap<Integer, PackageChoice>> entry : collectionSelected.entrySet()) {
+                    String key = entry.getKey();
+                    TreeMap<Integer, PackageChoice> value = entry.getValue();
+
+                    for (PackageChoice p : value.values()) {
+                        jsonArrayList.put(p.getNama());
+                    }
+
+                }
+
+                listObject.put("detailMenu", jsonArrayList);
                 listObject.put("tanggalPengiriman", PackageNasiCSelect.getTanggalPengiriman());
                 listObject.put("jamPengiriman", PackageNasiCSelect.getJamPengiriman());
                 listObject.put("atasNama", PackageNasiCSelect.getAtasNama());
@@ -193,6 +314,7 @@ public class PostPemesananActivity extends AppCompatActivity {
 
         // NASI BOX D
         if(PackageNasiDSelect.getNamaPackage() != null && !PackageNasiDSelect.getNamaPackage().isEmpty()) {
+            LinkedHashMap<String, TreeMap<Integer, PackageChoice>> collectionSelected = PackageNasiDSelect.getCollectionSelected();
 
             try {
                 JSONObject listObject = new JSONObject();
@@ -200,6 +322,20 @@ public class PostPemesananActivity extends AppCompatActivity {
                 listObject.put("menu", PackageNasiDSelect.getNamaPackage());
                 listObject.put("kuantitas", PackageNasiDSelect.getKuantitas());
                 listObject.put("subtotal", PackageNasiDSelect.getSubTotalPrice());
+
+                JSONArray jsonArrayList = new JSONArray();
+
+                for (LinkedHashMap.Entry<String, TreeMap<Integer, PackageChoice>> entry : collectionSelected.entrySet()) {
+                    String key = entry.getKey();
+                    TreeMap<Integer, PackageChoice> value = entry.getValue();
+
+                    for (PackageChoice p : value.values()) {
+                        jsonArrayList.put(p.getNama());
+                    }
+
+                }
+
+                listObject.put("detailMenu", jsonArrayList);
                 listObject.put("tanggalPengiriman", PackageNasiDSelect.getTanggalPengiriman());
                 listObject.put("jamPengiriman", PackageNasiDSelect.getJamPengiriman());
                 listObject.put("atasNama", PackageNasiDSelect.getAtasNama());
