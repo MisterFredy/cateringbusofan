@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/approval_scrollview"
+    android:scrollbars="vertical"
+    android:fillViewport="true"
+    android:background="#F2F2F2"
+    tools:context="com.akhmadfaizin.cateringbusofanowner.PesananUbahApprovalActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="22dp">
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#F2F2F2">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:background="#F2F2F2"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="26sp"
+                    android:textColor="#222222"
+                    android:textAlignment="center"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="24dp"
+                    android:text="Ubah Approval"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:text="Pilih Salah Satu"
+                    android:background="#222D58"
+                    android:paddingLeft="20dp"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#ccc3c3"
+                    android:gravity="center_vertical"/>
+                <ListView
+                    android:id="@+id/lv_approval"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#FFFFFF">
+                </ListView>
+
+                <Button
+                    android:id="@+id/btn_process"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="20dp"
+                    android:background="#222D58"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#ccc3c3"
+                    android:text="SUBMIT"/>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </RelativeLayout>
+</ScrollView>

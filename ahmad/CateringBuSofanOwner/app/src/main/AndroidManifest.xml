@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.akhmadfaizin.cateringbusofanowner">
+
+    <!-- Internet Permission -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="Bu Sofan Owner"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme.NoActionBar">
+        <service android:name=".MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <!-- [END firebase_service] -->
+        <!-- [START firebase_iid_service] -->
+        <service android:name=".MyFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <activity android:name=".SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:label="Bu Sofan Owner"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".LoginActivity"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateVisible|adjustPan" />
+        <activity
+            android:name=".RegisterActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".HomeActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".UbahProfileActivity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".GantiPasswordActivity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".CatalogueActivity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".DetailMenuCardActivity" />
+        <activity
+            android:name=".DetailItemActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".PackageSnackBActivity"
+            android:parentActivityName=".CatalogueActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".PackageSnackAActivity"
+            android:parentActivityName=".CatalogueActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".PackageBuffetCActivity"
+            android:parentActivityName=".CatalogueActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".PackageBuffetBActivity"
+            android:parentActivityName=".CatalogueActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".PackageBuffetAActivity"
+            android:parentActivityName=".CatalogueActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".PackagePondokanActivity"
+            android:parentActivityName=".CatalogueActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".PackageInputDetailPengirimanActivity"
+            android:noHistory="true"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".TesPassingIntentActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".PackageNasiCActivity"
+            android:parentActivityName=".CatalogueActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".PackageNasiAActivity"
+            android:parentActivityName=".CatalogueActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".PackageNasiBActivity"
+            android:parentActivityName=".CatalogueActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".PackageNasiDActivity"
+            android:parentActivityName=".CatalogueActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".KeranjangActivity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".PostPemesananActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".PutPemesananActivity" />
+        <activity
+            android:name=".PesananActivity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".PostRegisterActivity"
+            android:parentActivityName=".HomeActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".LoginAuthActivity"
+            android:parentActivityName=".LoginActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".TesSharedPreferenceActivity" />
+        <activity
+            android:name=".DetailPemesananActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".PutUbahProfileActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".PutUbahPasswordActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".FullProfileImageActivity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".UploadFotoUserActivity"
+            android:parentActivityName=".FullProfileImageActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".BuktiPembayaranActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".FullBuktiImageActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".BuktiPembayaranUpdateKonfirmasiActivity" />
+        <activity
+            android:name=".PesananUbahApprovalActivity"
+            android:theme="@style/AppTheme"></activity>
+    </application>
+
+</manifest>

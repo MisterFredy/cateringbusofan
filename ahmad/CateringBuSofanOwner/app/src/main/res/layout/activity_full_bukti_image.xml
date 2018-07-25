@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.akhmadfaizin.cateringbusofanowner.FullBuktiImageActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="16dp"
+        android:textSize="20sp"
+        android:textColor="#222222"
+        android:textAlignment="center"
+        android:text="Nominal"/>
+    <TextView
+        android:id="@+id/tv_bukti_nominal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginBottom="14dp"
+        android:textSize="24sp"
+        android:textColor="#159F5C"
+        android:text="asdasdasd"
+        android:textAlignment="center"/>
+
+    <com.akhmadfaizin.cateringbusofanowner.TouchImageView
+        android:id="@+id/iv_fullImage"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="14"
+        android:src="@drawable/profile"/>
+</LinearLayout>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none"
+    android:fillViewport="true"
+    android:background="#F2F2F2"
+    tools:context="com.akhmadfaizin.cateringbusofanowner.KeranjangActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="22dp">
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#F2F2F2">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:background="#F2F2F2"
+                android:orientation="vertical">
+
+                <com.akhmadfaizin.cateringbusofanowner.NonScrollListView
+                    android:id="@+id/lv_keranjang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:cacheColorHint="@android:color/transparent"
+                    android:listSelector="@android:color/transparent"
+                    android:background="#FFFFFF">
+                </com.akhmadfaizin.cateringbusofanowner.NonScrollListView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textSize="24sp"
+                    android:textColor="#616161"
+                    android:layout_marginTop="25dp"
+                    android:text="Total"/>
+
+                <TextView
+                    android:id="@+id/tv_total"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textSize="24sp"
+                    android:textColor="#159F5C"/>
+
+                <Button
+                    android:id="@+id/btn_submit_order"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="#781010"
+                    android:layout_marginTop="20dp"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:textColor="#ccc3c3"
+                    android:text="SUBMIT ORDER"/>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </RelativeLayout>
+</ScrollView>

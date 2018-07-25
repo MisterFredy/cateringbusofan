@@ -1,0 +1,166 @@
+{
+  "project_info": {
+    "project_number": "822862296230",
+    "firebase_url": "https://testcatering-b09c6.firebaseio.com",
+    "project_id": "testcatering-b09c6",
+    "storage_bucket": "testcatering-b09c6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:822862296230:android:8a57f0b31c441464",
+        "android_client_info": {
+          "package_name": "com.akhmadfaizin.cateringbusofan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "822862296230-ls280qgb9clkol6mvqmabd3o575pbfqb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBE9HCA0rHJaIQDfVJJJkvva2T74H0g4os"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:822862296230:android:1f5f02133701378d",
+        "android_client_info": {
+          "package_name": "com.akhmadfaizin.cateringbusofanowner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "822862296230-ls280qgb9clkol6mvqmabd3o575pbfqb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBE9HCA0rHJaIQDfVJJJkvva2T74H0g4os"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:822862296230:android:894256fa45bcce4a",
+        "android_client_info": {
+          "package_name": "com.akhmadfaizin.demofirebasecm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "822862296230-ls280qgb9clkol6mvqmabd3o575pbfqb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBE9HCA0rHJaIQDfVJJJkvva2T74H0g4os"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:822862296230:android:798e1092dc219529",
+        "android_client_info": {
+          "package_name": "com.example.root.firebasecm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "822862296230-ls280qgb9clkol6mvqmabd3o575pbfqb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBE9HCA0rHJaIQDfVJJJkvva2T74H0g4os"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:822862296230:android:3480a979bd31efe5",
+        "android_client_info": {
+          "package_name": "com.example.root.firebaseowner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "822862296230-ls280qgb9clkol6mvqmabd3o575pbfqb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBE9HCA0rHJaIQDfVJJJkvva2T74H0g4os"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
